@@ -173,6 +173,20 @@
   .tags{display:flex;flex-wrap:wrap;gap:7px}
   .tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;background:var(--tint);color:var(--rose-deep);padding:4px 10px;border-radius:6px}
 
+  /* ---------- Award winner card + interactive badge ---------- */
+  .card.winner{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose),var(--shadow-sm);position:relative;overflow:hidden}
+  .card.winner::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,rgba(245,175,175,.35),transparent);transform:skewX(-18deg);animation:winSheen 4.5s ease-in-out infinite}
+  @keyframes winSheen{0%,70%{left:-60%}85%{left:140%}100%{left:140%}}
+  .award{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--rose-deep),#C9637A);padding:6px 13px;border-radius:999px;border:none;cursor:pointer;margin-bottom:14px;align-self:flex-start;box-shadow:0 4px 14px rgba(176,74,88,.35);transition:transform .2s,box-shadow .2s}
+  .award svg{width:14px;height:14px;fill:#FFD98A;stroke:none;animation:trophyBob 2.4s ease-in-out infinite}
+  @keyframes trophyBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-6deg)}}
+  .award:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 7px 20px rgba(176,74,88,.45)}
+  .award:active{transform:scale(.96)}
+  .award.celebrate{animation:awardPop .5s ease}
+  @keyframes awardPop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+  .confetti-pop{position:absolute;width:8px;height:8px;border-radius:2px;pointer-events:none;opacity:0;z-index:5}
+  @keyframes confettiFly{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(var(--cr))}}
+
   /* ---------- Skills ---------- */
   .skills-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
   .skill-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
@@ -293,8 +307,7 @@
 <section id="about" class="alt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label" data-i18n="lbl_about">// what I do</span>
-      <h2 data-i18n="h_about">Three areas, one goal</h2>
+      <h2 data-i18n="h_about">Two areas, one goal</h2>
       <p class="sec-sub" data-i18n="sub_about">I build at the intersection of data, intelligent systems, and clean user experiences.</p>
     </div>
     <div class="focus-grid">
@@ -308,11 +321,6 @@
         <h3 data-i18n="f2_t">Databases</h3>
         <p data-i18n="f2_d">Relational design, SQL, Oracle APEX, and NoSQL with MongoDB — structured data that applications can rely on.</p>
       </div>
-      <div class="focus reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M8 9l-2 2.5L8 14M16 9l2 2.5L16 14"/></svg></div>
-        <h3 data-i18n="f3_t">Web &amp; Apps</h3>
-        <p data-i18n="f3_d">Responsive interfaces and applications with a UI/UX mindset shaped at the Apple Developer Academy.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -320,7 +328,6 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label" data-i18n="lbl_projects">// projects</span>
       <h2 data-i18n="h_projects">Selected work</h2>
       <p class="sec-sub" data-i18n="sub_projects">Academic and academy projects spanning machine learning, databases, and application development.</p>
     </div>
@@ -364,10 +371,11 @@
         <p data-i18n="p4_d">A responsive website with user-friendly interfaces, clean structure, and improved front-end usability built from web fundamentals.</p>
         <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
       </article>
-      <article class="card reveal">
+      <article class="card winner reveal">
         <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="8" height="6" rx="1.5"/><rect x="14" y="15" width="8" height="6" rx="1.5"/><path d="M6 9v4a2 2 0 0 0 2 2h6M18 15v-4a2 2 0 0 0-2-2h-3"/></svg></div>
+        <button type="button" class="award" id="netAward" aria-label="Award"><svg viewBox="0 0 24 24"><path d="M6 3h12v3a6 6 0 0 1-12 0V3zM4 4h2v2a3 3 0 0 1-2-2zm16 0a3 3 0 0 1-2 2V4h2zM9 13h6l-.5 4h-5L9 13zm-2 6h10v2H7v-2z"/></svg><span data-i18n="award_net">1st Place · KSU Project Fair</span></button>
         <h3 data-i18n="p5_t">Network Programming</h3>
-        <p data-i18n="p5_d">A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration.</p>
+        <p data-i18n="p5_d">A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration. It won first place at the King Saud University Project Fair.</p>
         <div class="tags"><span class="tag">Java</span><span class="tag">Sockets</span><span class="tag">Networking</span></div>
       </article>
     </div>
@@ -377,7 +385,6 @@
 <section id="skills" class="alt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label" data-i18n="lbl_skills">// skills</span>
       <h2 data-i18n="h_skills">What I work with</h2>
     </div>
     <div class="skills-cols">
@@ -406,7 +413,6 @@
 <section id="education">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label" data-i18n="lbl_edu">// education &amp; activities</span>
       <h2 data-i18n="h_edu">Background</h2>
     </div>
     <div class="timeline">
@@ -432,7 +438,6 @@
 <section id="certs" class="alt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="sec-label" data-i18n="lbl_certs">// certifications</span>
       <h2 data-i18n="h_certs">Certifications</h2>
     </div>
     <div class="cert-list">
@@ -467,7 +472,6 @@
 <section id="contact">
   <div class="wrap">
     <div class="contact-card reveal">
-      <span class="sec-label" data-i18n="lbl_contact">// contact</span>
       <h2 data-i18n="h_contact">Let's build something intelligent</h2>
       <p data-i18n="contact_d">Open to summer internship opportunities in AI, data science, and software development. Based in Riyadh, Saudi Arabia.</p>
       <div class="contact-row">
@@ -571,7 +575,7 @@
         h1: 'Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.',
         lede: 'Information Technology student specializing in AI &amp; Data Science, experienced in Python, SQL, and Power BI — currently seeking a summer internship to apply machine learning and data analysis skills in a professional environment.',
         cta_projects: 'View projects', cta_contact: 'Get in touch',
-        lbl_about: '// what I do', h_about: 'Three areas, one goal',
+        lbl_about: '// what I do', h_about: 'Two areas, one goal',
         sub_about: 'I build at the intersection of data, intelligent systems, and clean user experiences.',
         f1_t: 'AI &amp; Data Science', f1_d: 'Machine learning, predictive modeling, and turning raw datasets into clear, decision-ready insights with Python and Power BI.',
         f2_t: 'Databases', f2_d: 'Relational design, SQL, Oracle APEX, and NoSQL with MongoDB — structured data that applications can rely on.',
@@ -588,7 +592,8 @@
         p4_t: 'Responsive Web Project',
         p4_d: 'A responsive website with user-friendly interfaces, clean structure, and improved front-end usability built from web fundamentals.',
         p5_t: 'Network Programming',
-        p5_d: 'A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration.',
+        p5_d: 'A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration. It won first place at the King Saud University Project Fair.',
+        award_net: '1st Place · KSU Project Fair',
         lbl_skills: '// skills', h_skills: 'What I work with',
         sk_tech: 'Technical', sk_soft: 'Soft skills &amp; languages',
         sk1: 'Machine Learning', sk2: 'Data Analysis', sk3: 'Data Visualization', sk4: 'Web Development',
@@ -619,7 +624,7 @@
         h1: 'هيفاء السلمي<br>تحوّل البيانات إلى <em>حلول ذكية</em>.',
         lede: 'طالبة تقنية معلومات متخصصة في الذكاء الاصطناعي وعلم البيانات، بخبرة في Python و SQL و Power BI — أبحث حالياً عن تدريب صيفي لتطبيق مهارات تعلم الآلة وتحليل البيانات في بيئة مهنية.',
         cta_projects: 'استعرض المشاريع', cta_contact: 'تواصل معي',
-        lbl_about: '// مجالاتي', h_about: 'ثلاثة مجالات، هدف واحد',
+        lbl_about: '// مجالاتي', h_about: 'مجالان، هدف واحد',
         sub_about: 'أبني عند نقطة التقاء البيانات والأنظمة الذكية وتجارب المستخدم النظيفة.',
         f1_t: 'الذكاء الاصطناعي وعلم البيانات', f1_d: 'تعلم الآلة والنمذجة التنبؤية وتحويل البيانات الخام إلى رؤى واضحة تدعم القرار باستخدام Python و Power BI.',
         f2_t: 'قواعد البيانات', f2_d: 'التصميم العلائقي و SQL و Oracle APEX و NoSQL مع MongoDB — بيانات منظمة تعتمد عليها التطبيقات.',
@@ -636,7 +641,8 @@
         p4_t: 'موقع ويب متجاوب',
         p4_d: 'موقع متجاوب بواجهات سهلة الاستخدام وهيكلة منظمة وتجربة استخدام محسّنة مبني على أساسيات تطوير الويب.',
         p5_t: 'برمجة الشبكات',
-        p5_d: 'تطبيق خادم-عميل بتواصل فوري وتفاعل متعدد المستخدمين باستخدام Java Socket Programming وبروتوكولات الشبكات.',
+        p5_d: 'تطبيق خادم-عميل بتواصل فوري وتفاعل متعدد المستخدمين باستخدام Java Socket Programming وبروتوكولات الشبكات. حاز على المركز الأول في معرض المشاريع بجامعة الملك سعود.',
+        award_net: 'المركز الأول · معرض مشاريع جامعة الملك سعود',
         lbl_skills: '// المهارات', h_skills: 'أدواتي ومهاراتي',
         sk_tech: 'المهارات التقنية', sk_soft: 'المهارات الشخصية واللغات',
         sk1: 'تعلم الآلة', sk2: 'تحليل البيانات', sk3: 'تصوير البيانات', sk4: 'تطوير الويب',
@@ -685,7 +691,50 @@
       apply(current === 'en' ? 'ar' : 'en');
     });
   })();
+
+  /* ---- Network project award: confetti burst on tap/hover ---- */
+  (function () {
+    var award = document.getElementById('netAward');
+    if (!award) return;
+    var card = award.closest('.card');
+    var colors = ['#B04A58', '#F5AFAF', '#FFD98A', '#C9637A', '#F9DFDF'];
+    var cooling = false;
+
+    function burst() {
+      award.classList.remove('celebrate');
+      void award.offsetWidth;
+      award.classList.add('celebrate');
+      var rect = award.getBoundingClientRect();
+      var cardRect = card.getBoundingClientRect();
+      var originX = rect.left - cardRect.left + rect.width / 2;
+      var originY = rect.top - cardRect.top + rect.height / 2;
+      for (var i = 0; i < 16; i++) {
+        var p = document.createElement('span');
+        p.className = 'confetti-pop';
+        p.style.left = originX + 'px';
+        p.style.top = originY + 'px';
+        p.style.background = colors[i % colors.length];
+        var ang = Math.random() * Math.PI * 2;
+        var dist = 40 + Math.random() * 55;
+        p.style.setProperty('--cx', Math.cos(ang) * dist + 'px');
+        p.style.setProperty('--cy', (Math.sin(ang) * dist - 20) + 'px');
+        p.style.setProperty('--cr', (Math.random() * 540 - 270) + 'deg');
+        p.style.animation = 'confettiFly ' + (0.6 + Math.random() * 0.4) + 's ease-out forwards';
+        card.appendChild(p);
+        (function (el) { setTimeout(function () { el.remove(); }, 1100); })(p);
+      }
+    }
+
+    award.addEventListener('click', burst);
+    award.addEventListener('mouseenter', function () {
+      if (cooling) return;
+      cooling = true;
+      burst();
+      setTimeout(function () { cooling = false; }, 1200);
+    });
+  })();
 </script>
+
 
 </body>
 </html>
