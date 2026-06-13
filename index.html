@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Haifa Alsulami — IT student at King Saud University specializing in AI & Data Science. Portfolio of projects in machine learning, databases, and web development.">
+<title>Haifa Alsulami — AI & Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF7;
+    --surface:#FFFFFF;
+    --ink:#1C1B22;
+    --ink-soft:#56545E;
+    --iris:#5B50C8;
+    --iris-deep:#463DA8;
+    --lilac:#EFEDFB;
+    --line:#E7E5EE;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--lilac);color:var(--iris-deep)}
+  a{color:var(--iris-deep)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--iris)}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{font-size:.88rem;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--iris-deep)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--iris);outline-offset:3px;border-radius:4px}
+
+  /* ---------- Hero ---------- */
+  header{padding:88px 0 72px;position:relative;overflow:hidden}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:500;
+    color:var(--iris-deep);background:var(--lilac);
+    display:inline-block;padding:5px 12px;border-radius:999px;margin-bottom:20px;
+  }
+  h1{
+    font-family:'Sora',sans-serif;font-weight:800;
+    font-size:clamp(2.4rem,6vw,4rem);
+    letter-spacing:-.03em;line-height:1.08;margin-bottom:18px;
+  }
+  h1 em{font-style:normal;color:var(--iris)}
+  .lede{max-width:560px;font-size:1.06rem;color:var(--ink-soft);margin-bottom:32px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.92rem;
+    padding:12px 22px;border-radius:999px;text-decoration:none;
+    transition:transform .15s,box-shadow .15s;cursor:pointer;border:none;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--iris);color:#fff;box-shadow:0 4px 14px rgba(91,80,200,.25)}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(91,80,200,.32)}
+  .btn-ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+  /* decorative scatter plot — Haifa's field, drawn quietly into the hero */
+  .scatter{position:absolute;right:-40px;top:30px;width:380px;height:380px;opacity:.55;pointer-events:none}
+  .scatter circle{animation:float 7s ease-in-out infinite}
+  .scatter circle:nth-child(odd){animation-delay:-3.5s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  @media (prefers-reduced-motion:reduce){
+    .scatter circle{animation:none}
+    html{scroll-behavior:auto}
+    .btn:hover{transform:none}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:64px 0}
+  .sec-label{
+    font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:500;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--iris-deep);
+    display:block;margin-bottom:10px;
+  }
+  h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.02em;margin-bottom:34px}
+
+  /* ---------- Projects ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(28,27,34,.07);border-color:#D8D4EC}
+  .card h3{font-family:'Sora',sans-serif;font-weight:600;font-size:1.08rem;margin-bottom:10px;letter-spacing:-.01em}
+  .card p{font-size:.92rem;color:var(--ink-soft);margin-bottom:16px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    background:var(--lilac);color:var(--iris-deep);
+    padding:4px 10px;border-radius:6px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .skill-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .skill-box h3{font-family:'Sora',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:16px;color:var(--ink)}
+  .pill-row{display:flex;flex-wrap:wrap;gap:9px}
+  .pill{
+    font-size:.85rem;font-weight:500;color:var(--ink);
+    background:var(--bg);border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;
+  }
+
+  /* ---------- Timeline (education + certs) ---------- */
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .t-item{
+    display:grid;grid-template-columns:18px 1fr;gap:18px;
+    padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  .t-item:last-child{border-bottom:none}
+  .t-dot{width:10px;height:10px;border-radius:50%;background:var(--iris);margin-top:8px;justify-self:center}
+  .t-item h3{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;letter-spacing:-.01em}
+  .t-item .meta{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--iris-deep);margin:3px 0 6px}
+  .t-item p{font-size:.92rem;color:var(--ink-soft)}
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    background:linear-gradient(135deg,var(--lilac),#FFFFFF 70%);
+    border:1px solid var(--line);border-radius:20px;
+    padding:48px 36px;text-align:center;
+  }
+  .contact-card h2{margin-bottom:12px}
+  .contact-card p{color:var(--ink-soft);max-width:480px;margin:0 auto 28px}
+  .contact-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+  footer{padding:36px 0;border-top:1px solid var(--line);margin-top:40px}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--ink-soft)}
+
+  @media (max-width:680px){
+    .nav-links{display:none}
+    header{padding:64px 0 48px}
+    .scatter{display:none}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">Haifa<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap" style="position:relative">
+    <svg class="scatter" viewBox="0 0 380 380" aria-hidden="true">
+      <line x1="40" y1="340" x2="360" y2="340" stroke="#E7E5EE" stroke-width="1.5"/>
+      <line x1="40" y1="340" x2="40" y2="20" stroke="#E7E5EE" stroke-width="1.5"/>
+      <circle cx="90" cy="280" r="7" fill="#5B50C8" opacity=".35"/>
+      <circle cx="140" cy="230" r="9" fill="#5B50C8" opacity=".5"/>
+      <circle cx="185" cy="250" r="6" fill="#8A80E0" opacity=".45"/>
+      <circle cx="220" cy="180" r="10" fill="#5B50C8" opacity=".6"/>
+      <circle cx="265" cy="150" r="7" fill="#8A80E0" opacity=".5"/>
+      <circle cx="300" cy="110" r="11" fill="#5B50C8" opacity=".7"/>
+      <circle cx="330" cy="70" r="8" fill="#463DA8" opacity=".65"/>
+      <path d="M70 300 C 160 270, 240 190, 345 55" stroke="#5B50C8" stroke-width="2" fill="none" stroke-dasharray="5 7" opacity=".4"/>
+    </svg>
+
+    <span class="eyebrow">AI &amp; Data Science · King Saud University</span>
+    <h1>Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.</h1>
+    <p class="lede">Information Technology student specializing in AI &amp; Data Science, experienced in Python, SQL, and Power BI — currently seeking a summer internship to apply machine learning and data analysis skills in a professional environment.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-ghost" id="email-link" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <span class="sec-label">// projects</span>
+    <h2>Selected work</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>AI &amp; Data Science Projects</h3>
+        <p>Machine learning and data analysis projects on real datasets — classification, clustering, and predictive modeling with full preprocessing and model evaluation.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">Data Viz</span></div>
+      </article>
+      <article class="card">
+        <h3>Flora Application</h3>
+        <p>A women-focused app offering relaxing activities and personalized experiences, with a calming UI/UX built on soft palettes and organized navigation.</p>
+        <div class="tags"><span class="tag">UI/UX</span><span class="tag">App Dev</span><span class="tag">Apple Academy</span></div>
+      </article>
+      <article class="card">
+        <h3>Hospital Database System</h3>
+        <p>A complete hospital database with relational schemas, SQL queries, and interactive application interfaces built on Oracle SQL and Oracle APEX.</p>
+        <div class="tags"><span class="tag">Oracle SQL</span><span class="tag">APEX</span><span class="tag">DB Design</span></div>
+      </article>
+      <article class="card">
+        <h3>Responsive Web Project</h3>
+        <p>A responsive website with user-friendly interfaces, clean structure, and improved front-end usability built from web fundamentals.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      </article>
+      <article class="card">
+        <h3>Network Programming</h3>
+        <p>A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Sockets</span><span class="tag">Networking</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <span class="sec-label">// skills</span>
+    <h2>What I work with</h2>
+    <div class="skills-cols">
+      <div class="skill-box" style="background:var(--bg)">
+        <h3>Technical</h3>
+        <div class="pill-row">
+          <span class="pill">Python</span><span class="pill">Machine Learning</span><span class="pill">Data Analysis</span>
+          <span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Data Visualization</span>
+          <span class="pill">JavaScript</span><span class="pill">HTML &amp; CSS</span><span class="pill">Java Sockets</span>
+          <span class="pill">Web Development</span>
+        </div>
+      </div>
+      <div class="skill-box" style="background:var(--bg)">
+        <h3>Soft skills &amp; languages</h3>
+        <div class="pill-row">
+          <span class="pill">Problem Solving</span><span class="pill">Analytical Thinking</span>
+          <span class="pill">Teamwork</span><span class="pill">Communication</span>
+          <span class="pill">Time Management</span><span class="pill">Adaptability</span>
+          <span class="pill">Arabic — native</span><span class="pill">English — IELTS certified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <span class="sec-label">// education &amp; activities</span>
+    <h2>Background</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-dot"></span>
+        <div>
+          <h3>King Saud University</h3>
+          <p class="meta">2023 — 2027</p>
+          <p>Bachelor of Information Technology — AI &amp; Data Science Track</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-dot"></span>
+        <div>
+          <h3>Apple Developer Academy — Tuwaiq</h3>
+          <p class="meta">Application Developer Program</p>
+          <p>Software development, project management, and UI/UX design.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <span class="t-dot"></span>
+        <div>
+          <h3>Google Developer Group Club · IT Student Council</h3>
+          <p class="meta">Mar 2026 — Present · King Saud University</p>
+          <p>Active member contributing to the university's tech community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs" style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <span class="sec-label">// certifications</span>
+    <h2>Certifications</h2>
+    <div class="grid">
+      <article class="card"><h3>AWS — Generative AI</h3><p>Foundational knowledge in Generative AI concepts, AI frameworks, and cloud-based AI technologies.</p><div class="tags"><span class="tag">Amazon Web Services</span></div></article>
+      <article class="card"><h3>IBM — AI Fundamentals</h3><p>AI fundamentals, model training, machine learning concepts, and Generative AI techniques.</p><div class="tags"><span class="tag">IBM</span></div></article>
+      <article class="card"><h3>MongoDB for SQL Professionals</h3><p>NoSQL databases, MongoDB operations, and database management concepts.</p><div class="tags"><span class="tag">MongoDB</span></div></article>
+      <article class="card"><h3>Data Analysis with Power BI</h3><p>Business intelligence, dashboard creation, and data visualization with Power BI.</p><div class="tags"><span class="tag">Bayan Academy</span></div></article>
+      <article class="card"><h3>Application Developer</h3><p>App development, problem-solving, and technical project implementation.</p><div class="tags"><span class="tag">Apple Academy &amp; Tuwaiq</span></div></article>
+      <article class="card"><h3>IELTS</h3><p>Certified English language proficiency qualification.</p><div class="tags"><span class="tag">English</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <span class="sec-label">// contact</span>
+      <h2>Let's build something intelligent</h2>
+      <p>Open to summer internship opportunities in AI, data science, and software development. Based in Riyadh, Saudi Arabia.</p>
+      <div class="contact-row">
+        <a class="btn btn-primary" id="email-btn" href="#" rel="nofollow">✉ Email me</a>
+        <a class="btn btn-ghost" href="tel:+966581228240">📞 +966 58 122 8240</a>
+      </div>
+      <p style="margin-top:20px;font-size:.85rem" id="email-display" aria-label="email address"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Haifa Alsulami</span>
+    <span>Riyadh, Saudi Arabia</span>
+  </div>
+</footer>
+
+<script>
+  // Email protection: the address never appears in the HTML source.
+  // It is assembled at runtime from reversed parts, so scrapers and
+  // spam bots that read raw HTML cannot harvest it.
+  (function () {
+    var p1 = '277demhaafiah'.split('').reverse().join(''); // local part
+    var p2 = 'moc.liamg'.split('').reverse().join('');     // domain
+    var addr = p1 + '\u0040' + p2;
+
+    var btn = document.getElementById('email-btn');
+    var disp = document.getElementById('email-display');
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.href = 'mailto:' + addr;
+    });
+
+    // Render the visible address with a canvas-free trick: insert it as
+    // text only after JS runs, keeping it out of the static markup.
+    disp.textContent = addr.replace('\u0040', ' [at] ');
+  })();
+</script>
+
+</body>
+</html>
