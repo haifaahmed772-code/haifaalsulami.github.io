@@ -57,9 +57,9 @@
     --line:#302533;
     --card:#1D161F;
     --on-accent:#2A1017;
-    --glow:rgba(242,167,180,.20);
-    --grid-line:rgba(242,167,180,.05);
-    --shadow-sm:0 2px 10px rgba(0,0,0,.34);
+    --glow:rgba(242,167,180,.30);
+    --grid-line:rgba(242,167,180,.075);
+    --shadow-sm:0 2px 10px rgba(0,0,0,.34),0 0 0 1px rgba(242,167,180,.03);
     --shadow-md:0 14px 32px rgba(0,0,0,.46);
     --shadow-lg:0 30px 64px rgba(0,0,0,.6);
   }
@@ -207,7 +207,7 @@
   @keyframes heroIn{to{opacity:1;transform:none}}
 
   /* ---- Stats strip ---- */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:560px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:430px}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 12px;
     text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s var(--spring),border-color .3s}
   .stat:hover{transform:translateY(-4px);border-color:var(--rose)}
@@ -439,9 +439,10 @@
   .cert .meta{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--rose-deep);margin-bottom:10px}
   .cert p:not(.meta){font-size:.89rem;color:var(--ink-soft);line-height:1.65}
   .seal{position:absolute;inset-inline-end:-20px;top:-20px;width:118px;height:118px;
-    opacity:.13;pointer-events:none;transition:transform .6s var(--ease),opacity .4s}
-  .seal circle{fill:none;stroke:var(--rose-deep);stroke-width:2}
-  .cert:hover .seal{transform:rotate(28deg) scale(1.06);opacity:.22}
+    opacity:.22;pointer-events:none;transition:transform .6s var(--ease),opacity .4s var(--hover)}
+  .seal circle{fill:none;stroke:var(--rose);stroke-width:2;transition:stroke .35s var(--hover)}
+  .cert:hover .seal circle{stroke:var(--rose-deep)}
+  .cert:hover .seal{transform:rotate(28deg) scale(1.06);opacity:.55}
   html[dir="rtl"] .seal{transform:scaleX(-1)}
   html[dir="rtl"] .cert:hover .seal{transform:scaleX(-1) rotate(-28deg) scale(1.06)}
 
@@ -495,6 +496,61 @@
   .to-top.show{opacity:1;transform:none;pointer-events:auto}
   .to-top.show:hover{transform:translateY(-4px)}
 
+
+  /* ==========================================================
+     Dark mode — rose light, warmed up
+     ========================================================== */
+  html[data-theme="dark"] body{
+    background:
+      radial-gradient(1100px 520px at 88% -8%,rgba(242,167,180,.10),transparent 62%),
+      radial-gradient(900px 460px at 4% 34%,rgba(201,128,143,.07),transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  html[data-theme="dark"] header::before{
+    background:radial-gradient(circle at 50% 50%,
+      rgba(242,167,180,.34),rgba(224,137,155,.15) 34%,transparent 66%);
+  }
+  html[data-theme="dark"] .alt{
+    background:linear-gradient(180deg,rgba(242,167,180,.035),transparent 40%),var(--surface);
+  }
+
+  /* surfaces catch a little rose instead of going flat black */
+  html[data-theme="dark"] .panel{box-shadow:var(--shadow-lg),0 0 60px -14px rgba(242,167,180,.30)}
+  html[data-theme="dark"] .card:hover,
+  html[data-theme="dark"] .cert:hover,
+  html[data-theme="dark"] .focus:hover,
+  html[data-theme="dark"] .featured:hover{
+    box-shadow:var(--shadow-md),0 0 34px -10px rgba(242,167,180,.34)}
+  html[data-theme="dark"] .skill-box,
+  html[data-theme="dark"] .stat,
+  html[data-theme="dark"] .cert,
+  html[data-theme="dark"] .card,
+  html[data-theme="dark"] .focus{
+    background:linear-gradient(158deg,rgba(242,167,180,.045),transparent 46%),var(--card)}
+  html[data-theme="dark"] .contact-card{
+    background:linear-gradient(140deg,rgba(242,167,180,.13),var(--card) 62%)}
+
+  /* accents glow rose, not maroon */
+  html[data-theme="dark"] .btn-primary{box-shadow:0 6px 22px rgba(242,167,180,.24)}
+  html[data-theme="dark"] .btn-primary:hover{box-shadow:0 12px 32px rgba(242,167,180,.34)}
+  html[data-theme="dark"] .btn::after{
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent)}
+  html[data-theme="dark"] .chip[aria-pressed="true"]{box-shadow:0 6px 20px rgba(242,167,180,.26)}
+  html[data-theme="dark"] .to-top{box-shadow:0 8px 26px rgba(242,167,180,.32)}
+  html[data-theme="dark"] .badge{box-shadow:0 4px 16px rgba(242,167,180,.22)}
+  html[data-theme="dark"] .award{box-shadow:0 4px 16px rgba(242,167,180,.28)}
+  html[data-theme="dark"] .card.winner{box-shadow:0 0 0 1px var(--rose),0 0 30px -12px rgba(242,167,180,.4)}
+  html[data-theme="dark"] .seal{opacity:.26}
+  html[data-theme="dark"] .cert:hover .seal{opacity:.6}
+  html[data-theme="dark"] .node.lit b{box-shadow:0 0 18px -4px rgba(242,167,180,.55)}
+  @keyframes badgeGlowDark{0%,100%{box-shadow:0 4px 16px rgba(242,167,180,.24)}50%{box-shadow:0 6px 26px rgba(242,167,180,.46)}}
+  html[data-theme="dark"] .badge.new{animation-name:badgeGlowDark}
+
+  /* the newest certificate reads as new */
+  .cert.is-new{border-color:var(--rose)}
+  html[data-theme="dark"] .cert.is-new{box-shadow:var(--shadow-sm),0 0 26px -12px rgba(242,167,180,.5)}
+
   /* ==========================================================
      Responsive
      ========================================================== */
@@ -511,7 +567,10 @@
     .menu-btn{display:inline-flex}
     header{padding:52px 0 44px}
     section{padding:60px 0}
-    .stats{grid-template-columns:repeat(2,1fr)}
+    .stats{grid-template-columns:repeat(3,1fr);gap:8px}
+    .stat{padding:12px 6px}
+    .stat-num{font-size:1.32rem}
+    .stat-label{font-size:.56rem;letter-spacing:.06em}
     .modal{padding:14px}
     .modal-card{padding:28px 22px}
     .contact-card{padding:44px 24px}
@@ -587,8 +646,7 @@
         </div>
         <div class="stats hero-in d5">
           <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label" data-i18n="st_proj">Projects</span></div>
-          <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label" data-i18n="st_cert">Certificates</span></div>
-          <div class="stat"><span class="stat-num" data-count="1" data-suffix="st">0</span><span class="stat-label" data-i18n="st_award">KSU Fair</span></div>
+          <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="st_cert">Certificates</span></div>
           <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label" data-i18n="st_lang">Languages</span></div>
         </div>
       </div>
@@ -836,9 +894,18 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <h2 data-i18n="h_certs">Certifications</h2>
-      <p class="sec-sub" data-i18n="sub_certs">Six professional certificates in AI, data, and application development.</p>
+      <p class="sec-sub" data-i18n="sub_certs">Seven professional certificates in AI, data engineering, and application development.</p>
     </div>
     <div class="cert-list" id="cert-list">
+
+      <div class="cert is-new reveal-tilt">
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
+        <!-- Update c7_t in the dictionary with the exact program name on the certificate -->
+        <h3 data-i18n="c7_t">Data Engineering for Modern AI Systems</h3>
+        <p class="meta" data-i18n="c7_m">SDAIA — Saudi Data &amp; AI Authority</p>
+        <p data-i18n="c7_d">Data pipelines, ETL processes, and data modeling for the infrastructure modern AI systems are built on.</p>
+      </div>
 
       <div class="cert reveal-tilt">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
@@ -1390,13 +1457,15 @@
       e4_d: 'Member supporting student initiatives and activities within the IT department.',
 
       lbl_certs: '// certifications', h_certs: 'Certifications',
-      sub_certs: 'Six professional certificates in AI, data, and application development.',
+      sub_certs: 'Seven professional certificates in AI, data engineering, and application development.',
       c1_t: 'Introducing Generative AI', c1_d: 'Generative AI concepts, AI frameworks, and cloud-based AI technologies.',
       c2_t: 'Artificial Intelligence Fundamentals', c2_d: 'AI fundamentals, model training, machine learning, and Generative AI techniques.',
       c3_t: 'MongoDB for SQL Professionals', c3_d: 'NoSQL databases, MongoDB operations, and database management.',
       c4_t: 'Data Analysis with Power BI', c4_m: 'Bayan Academy', c4_d: 'Business intelligence, dashboards, and data visualization.',
       c5_t: 'Application Developer', c5_m: 'Apple Developer Academy &amp; Tuwaiq', c5_d: 'App development, problem-solving, and project implementation.',
       c6_m: 'English Proficiency', c6_d: 'Certified English language proficiency qualification.',
+      c7_t: 'Data Engineering for Modern AI Systems', c7_m: 'SDAIA — Saudi Data &amp; AI Authority',
+      c7_d: 'Data pipelines, ETL processes, and data modeling for the infrastructure modern AI systems are built on.',
 
       lbl_contact: '// contact', h_contact: 'Contact &amp; opportunities',
       contact_d: 'To connect regarding professional opportunities in AI, data science, data engineering, and software development. Riyadh, Saudi Arabia.',
@@ -1495,13 +1564,15 @@
       e4_d: 'عضوة تدعم المبادرات والأنشطة الطلابية في قسم تقنية المعلومات.',
 
       lbl_certs: '// الشهادات', h_certs: 'الشهادات الاحترافية',
-      sub_certs: 'ست شهادات احترافية في الذكاء الاصطناعي والبيانات وتطوير التطبيقات.',
+      sub_certs: 'سبع شهادات احترافية في الذكاء الاصطناعي وهندسة البيانات وتطوير التطبيقات.',
       c1_t: 'مقدمة في الذكاء الاصطناعي التوليدي', c1_d: 'مفاهيم الذكاء التوليدي وأطر العمل وتقنيات الذكاء السحابية.',
       c2_t: 'أساسيات الذكاء الاصطناعي', c2_d: 'أساسيات الذكاء الاصطناعي وتدريب النماذج وتعلم الآلة وتقنيات الذكاء التوليدي.',
       c3_t: 'MongoDB لمحترفي SQL', c3_d: 'قواعد بيانات NoSQL وعمليات MongoDB وإدارة قواعد البيانات.',
       c4_t: 'تحليل البيانات بـ Power BI', c4_m: 'أكاديمية بيان', c4_d: 'ذكاء الأعمال ولوحات المعلومات وتصوير البيانات.',
       c5_t: 'مطورة تطبيقات', c5_m: 'أكاديمية Apple للمطورين وطويق', c5_d: 'تطوير التطبيقات وحل المشكلات وتنفيذ المشاريع.',
       c6_m: 'إتقان اللغة الإنجليزية', c6_d: 'شهادة معتمدة في إتقان اللغة الإنجليزية.',
+      c7_t: 'هندسة البيانات لأنظمة الذكاء الاصطناعي الحديثة', c7_m: 'سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي',
+      c7_d: 'مسارات البيانات وعمليات ETL ونمذجة البيانات لبناء البنية التي تقوم عليها أنظمة الذكاء الاصطناعي الحديثة.',
 
       lbl_contact: '// تواصل', h_contact: 'للتواصل والفرص المهنية',
       contact_d: 'للتواصل للفرص المهنية في الذكاء الاصطناعي وعلم البيانات وهندسة البيانات وتطوير البرمجيات. الرياض، المملكة العربية السعودية.',
