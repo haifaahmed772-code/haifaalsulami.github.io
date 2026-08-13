@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Haifa Alsulami — IT student at King Saud University specializing in AI, Data Science & Data Engineering. Python, SQL, ETL pipelines, Power BI.">
+<meta name="description" content="Haifa Alsulami — IT student at King Saud University specializing in AI, Data Science & Data Engineering. Agentic AI systems, Python, SQL, ETL pipelines, Power BI.">
 <meta name="theme-color" content="#FCF8F8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Haifa Alsulami — AI, Data Science & Data Engineering">
-<meta property="og:description" content="Turning raw data into intelligent solutions — machine learning, data pipelines, and clean interfaces.">
+<meta property="og:description" content="Turning raw data into intelligent solutions — agentic AI, machine learning, data pipelines, and clean interfaces.">
 <title>Haifa Alsulami — AI &amp; Data Science</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Haifa Alsulami","jobTitle":"AI & Data Science Student","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"King Saud University"},{"@type":"Organization","name":"Apple Developer Academy — Tuwaiq"}],"url":"https://www.linkedin.com/in/haifa-alsulami-a00267353","sameAs":["https://www.linkedin.com/in/haifa-alsulami-a00267353","https://github.com/haifaahmed772-code"],"knowsAbout":["Agentic AI","LangGraph","Machine Learning","Data Engineering","Kafka","Delta Lake","Airflow","ETL","SQL","Python","Power BI","Databases"],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Building Agentic AI Systems","credentialCategory":"certificate","recognizedBy":{"@type":"Organization","name":"SDAIA — Saudi Data & AI Authority"}}]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -122,15 +125,24 @@
   .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;position:relative}
   .logo span{color:var(--rose-deep)}
   .nav-right{display:flex;align-items:center;gap:18px}
-  .nav-links{display:flex;gap:4px;list-style:none}
-  .nav-links a{position:relative;font-size:.88rem;font-weight:500;color:var(--ink-soft);text-decoration:none;
-    padding:8px 12px;border-radius:999px;transition:color .25s,background .25s}
-  .nav-links a::after{content:'';position:absolute;left:50%;bottom:2px;width:0;height:2px;border-radius:2px;
-    background:var(--rose-deep);transform:translateX(-50%);transition:width .3s var(--ease)}
-  .nav-links a:hover,.nav-links a:focus-visible{color:var(--rose-deep)}
-  .nav-links a:hover::after{width:18px}
-  .nav-links a.active{color:var(--rose-deep);background:var(--tint)}
-  .nav-links a.active::after{width:0}
+  .nav-links{position:relative;display:flex;gap:4px;list-style:none}
+  .nav-links .nav-pill{position:absolute;top:50%;left:0;width:0;height:36px;border-radius:999px;
+    background:var(--tint);border:1px solid transparent;opacity:0;pointer-events:none;z-index:0;
+    transform:translateY(-50%);
+    transition:opacity .3s var(--ease),left .42s var(--out),width .42s var(--out),border-color .3s}
+  .nav-links .nav-pill.show{opacity:1}
+  .nav-links .nav-pill.hot{border-color:var(--rose)}
+  .nav-links li:not(.nav-pill){position:relative;z-index:1}
+  .nav-links a{position:relative;display:block;font-size:.88rem;font-weight:500;color:var(--ink-soft);
+    text-decoration:none;padding:7px 14px;border-radius:999px;transition:color .3s var(--ease)}
+  .nav-links a:hover,.nav-links a:focus-visible,.nav-links a.active{color:var(--rose-deep)}
+  /* the label rolls: the word leaves upward, its twin arrives from below */
+  .nav-links .roll{display:block;position:relative;overflow:hidden;height:1.55em;line-height:1.55em}
+  html[lang="ar"] .nav-links .roll{height:1.9em;line-height:1.9em}
+  .nav-links .roll i{display:block;font-style:normal;transition:transform .45s var(--out)}
+  .nav-links .roll i+i{position:absolute;inset:0;transform:translateY(110%)}
+  .nav-links a:hover .roll i,.nav-links a:focus-visible .roll i{transform:translateY(-110%)}
+  .nav-links a:hover .roll i+i,.nav-links a:focus-visible .roll i+i{transform:translateY(0)}
   a:focus-visible,button:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:6px}
   .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
     background:var(--card);color:var(--ink-soft);border:1px solid var(--line);border-radius:12px;cursor:pointer;
@@ -422,10 +434,30 @@
     border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);
     transition:transform .42s var(--hover),box-shadow .42s var(--hover),border-color .32s var(--hover),opacity .65s var(--out)}
   .cert:hover{transform:translate3d(0,-5px,0);border-color:var(--rose);box-shadow:var(--shadow-md)}
-  .cert::before{content:'';position:absolute;top:0;inset-inline-start:-70%;width:45%;height:100%;
-    background:linear-gradient(120deg,transparent,var(--glow),transparent);transform:skewX(-18deg);
-    pointer-events:none;transition:inset-inline-start .8s var(--ease)}
-  .cert:hover::before{inset-inline-start:140%}
+  /* the inner rule of a printed certificate */
+  .cert::before{content:'';position:absolute;inset:9px;border:1px solid var(--tint);border-radius:11px;
+    pointer-events:none;transition:border-color .4s var(--ease),inset .4s var(--out)}
+  .cert:hover::before{border-color:var(--rose);inset:7px}
+  .cert{padding:30px 28px 24px;transform-style:preserve-3d}
+  .cert h3{padding-inline-end:52px}
+  .cert .meta{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.09em;font-size:.68rem}
+  .cert .meta::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--rose);flex:none}
+  .cert-flag{display:inline-flex;align-items:center;gap:7px;margin-bottom:16px;
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--on-accent);background:var(--rose-deep);padding:5px 13px;border-radius:999px;
+    box-shadow:0 4px 14px rgba(176,74,88,.28)}
+  .cert-flag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--on-accent);
+    animation:badgeDot 1.8s ease-in-out infinite}
+  html[lang="ar"] .cert-flag{font-family:'Thmanyah Sans',sans-serif;letter-spacing:0}
+  /* the newest certificate takes the full width of the wall */
+  @media (min-width:900px){
+    .cert.is-new{grid-column:span 2;padding:40px 38px 34px}
+    .cert.is-new h3{font-size:1.3rem;max-width:76%}
+    .cert.is-new p:not(.meta){max-width:74%;font-size:.95rem}
+    .cert.is-new .seal{width:190px;height:190px;inset-inline-end:-34px;top:-34px;opacity:.28}
+    .cert.is-new .icon{width:52px;height:52px}
+    .cert.is-new .icon svg{width:25px;height:25px}
+  }
   .cert>*{position:relative}
   .cert .icon{width:44px;height:44px;border-radius:12px;background:var(--tint);
     display:flex;align-items:center;justify-content:center;margin-bottom:16px;
@@ -471,6 +503,9 @@
   .modal-body li::before{content:'';position:absolute;inset-inline-start:0;top:.62em;width:8px;height:8px;
     border-radius:3px;background:var(--rose);transform:rotate(45deg)}
   .modal-tags{display:flex;flex-wrap:wrap;gap:7px}
+  .modal-body a{color:var(--rose-deep);font-weight:600;text-decoration:none;border-bottom:1px solid var(--rose);
+    transition:border-color .25s,opacity .25s}
+  .modal-body a:hover{border-color:var(--rose-deep);opacity:.85}
 
   /* ==========================================================
      Contact / footer
@@ -488,6 +523,12 @@
 
   footer{padding:34px 0;border-top:1px solid var(--line);margin-top:50px;background:var(--surface)}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem;color:var(--ink-soft)}
+  .foot-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft);text-decoration:none;position:relative;transition:color .25s}
+  .foot-links a::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:1px;background:var(--rose-deep);
+    transform:scaleX(0);transform-origin:right;transition:transform .35s var(--out)}
+  .foot-links a:hover{color:var(--rose-deep)}
+  .foot-links a:hover::after{transform:scaleX(1);transform-origin:left}
 
   .to-top{position:fixed;inset-inline-end:22px;bottom:22px;z-index:70;width:46px;height:46px;
     border-radius:50%;border:none;background:var(--rose-deep);color:var(--on-accent);cursor:pointer;
@@ -551,6 +592,189 @@
   .cert.is-new{border-color:var(--rose)}
   html[data-theme="dark"] .cert.is-new{box-shadow:var(--shadow-sm),0 0 26px -12px rgba(242,167,180,.5)}
 
+
+  /* ==========================================================
+     v2 — additions that keep the same rose identity
+     ========================================================== */
+
+  /* skip link */
+  .skip{position:absolute;inset-inline-start:12px;top:-70px;z-index:200;background:var(--rose-deep);color:var(--on-accent);
+    font-weight:600;font-size:.88rem;padding:10px 18px;border-radius:12px;text-decoration:none;transition:top .25s var(--ease)}
+  .skip:focus{top:12px}
+
+  /* pointer spotlight — the rose glow follows the cursor */
+  .card::after,.featured::after,.cert::after{content:'';position:absolute;inset:0;border-radius:inherit;
+    background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 66%);
+    opacity:0;pointer-events:none;z-index:0;transition:opacity .38s var(--ease)}
+  .card:hover::after,.featured:hover::after,.cert:hover::after{opacity:.5}
+  html[data-theme="dark"] .card:hover::after,html[data-theme="dark"] .featured:hover::after,
+  html[data-theme="dark"] .cert:hover::after{opacity:.75}
+  .card>*,.focus>*,.cert>*,.featured>*{position:relative;z-index:1}
+  .card>.confetti-pop,.confetti-pop{position:absolute;z-index:4}
+
+  /* certificates open a detail card too */
+  .cert{cursor:pointer}
+  .cert .more{position:static;margin-top:18px;transform:translateY(5px)}
+  .cert:hover .more{opacity:1;transform:none}
+  @media (hover:none){.cert .more{opacity:.5;transform:none}}
+
+  /* ---------- Panel tabs: pipeline / agent ---------- */
+  .panel-tabs{display:flex;gap:6px;margin-inline-start:8px}
+  .ptab{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink-soft);background:transparent;
+    border:1px solid transparent;border-radius:999px;padding:4px 11px;cursor:pointer;direction:ltr;
+    transition:color .25s,background .25s,border-color .25s}
+  .ptab:hover{color:var(--rose-deep)}
+  .ptab.active{color:var(--rose-deep);background:var(--tint);border-color:var(--rose)}
+  .view{display:none}
+  .view.on{display:block;animation:viewIn .5s var(--out)}
+  @keyframes viewIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* ---------- Agent loop artwork (hero, view 2) ---------- */
+  .loop .ring{fill:none;stroke:var(--tint);stroke-width:2}
+  .loop .arc{fill:none;stroke:var(--rose-deep);stroke-width:2.6;stroke-linecap:round;
+    stroke-dasharray:56 233;animation:arcRun 4.8s linear infinite}
+  @keyframes arcRun{to{stroke-dashoffset:-289}}
+  .loop .nd{fill:var(--card);stroke:var(--rose);stroke-width:1.9}
+  .loop .nd-in{fill:var(--rose-deep);transform-box:fill-box;transform-origin:center;
+    animation:ndBeat 4.8s var(--ease) infinite}
+  @keyframes ndBeat{0%,100%{transform:scale(1);opacity:.55}12%{transform:scale(1.5);opacity:1}30%{transform:scale(1);opacity:.55}}
+  .loop text{font-family:'JetBrains Mono',monospace;font-size:9.5px;fill:var(--ink-soft);letter-spacing:.06em;
+    direction:ltr;unicode-bidi:isolate}
+  html[lang="ar"] .loop text{font-family:'Thmanyah Sans',sans-serif;font-size:11px;letter-spacing:0}
+  html[dir="rtl"] .loop{direction:ltr}
+  .loop .orbit{transform-box:view-box;transform-origin:150px 72px;animation:orbitRun 4.8s linear infinite}
+  @keyframes orbitRun{to{transform:rotate(360deg)}}
+  .trace{margin-top:6px;display:grid;gap:7px;font-family:'JetBrains Mono',monospace;font-size:.66rem;
+    color:var(--ink-soft);direction:ltr;text-align:left}
+  .trace span{opacity:0;animation:traceIn .5s var(--out) forwards}
+  .trace span:nth-child(1){animation-delay:.15s}.trace span:nth-child(2){animation-delay:.5s}
+  .trace span:nth-child(3){animation-delay:.85s}.trace span:nth-child(4){animation-delay:1.2s}
+  .trace .ok{color:var(--rose-deep);font-weight:500}
+  @keyframes traceIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+
+  /* ---------- Agentic project artwork ---------- */
+  .agent .wire{stroke:var(--rose);stroke-width:1.8;opacity:.5;stroke-dasharray:4 6;animation:wireFlow 2.6s linear infinite}
+  @keyframes wireFlow{to{stroke-dashoffset:-40}}
+  .agent .core{fill:var(--rose-deep)}
+  .agent .core-ring{fill:none;stroke:var(--rose);stroke-width:2;transform-box:fill-box;transform-origin:center;
+    animation:corePulse 3.2s ease-out infinite}
+  @keyframes corePulse{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+  .agent .tool{fill:var(--card);stroke:var(--rose);stroke-width:1.8;transform-box:fill-box;transform-origin:center;
+    animation:toolPulse 3.4s var(--ease) infinite}
+  @keyframes toolPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+  .agent .glyph{stroke:var(--rose-deep);stroke-width:2;fill:none;stroke-linecap:round}
+
+  /* ---------- Email chip ---------- */
+  .mail-chip{display:inline-flex;align-items:center;gap:10px;margin-top:26px;direction:ltr;cursor:pointer;
+    font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--ink-soft);
+    background:var(--card);border:1px dashed var(--rose);border-radius:999px;padding:10px 20px;
+    transition:color .25s,border-color .25s,transform .25s var(--spring),box-shadow .25s}
+  .mail-chip:hover{color:var(--rose-deep);border-style:solid;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .mail-chip:active{transform:translateY(0) scale(.98)}
+  .mail-chip svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .mail-chip .ck{display:none}
+  .mail-chip.copied{color:var(--rose-deep);border-style:solid;border-color:var(--rose-deep);animation:chipPop .45s var(--spring)}
+  .mail-chip.copied .cp{display:none}
+  .mail-chip.copied .ck{display:block}
+  @keyframes chipPop{0%{transform:scale(1)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+  /* ---------- Toast ---------- */
+  .toast{position:fixed;inset-inline-end:22px;bottom:84px;z-index:120;background:var(--rose-deep);color:var(--on-accent);
+    font-size:.85rem;font-weight:600;padding:11px 20px;border-radius:999px;box-shadow:0 10px 28px rgba(176,74,88,.4);
+    opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .3s,transform .35s var(--spring)}
+  .toast.show{opacity:1;transform:none}
+
+  /* ---------- Print: the portfolio should survive a PDF export ---------- */
+  @media print{
+    nav,.to-top,.progress,.marquee,.modal,.toast,.skip{display:none !important}
+    body{background:#fff;color:#000}
+    section{padding:24px 0;break-inside:avoid}
+    .card,.cert,.focus,.featured{break-inside:avoid;box-shadow:none}
+  }
+
+
+  /* ==========================================================
+     v3 — the parts that make it feel handmade
+     ========================================================== */
+
+  /* badges without emoji */
+  .badge{display:inline-flex;align-items:center;gap:7px}
+  .badge.new::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--on-accent);
+    animation:badgeDot 1.8s ease-in-out infinite}
+  @keyframes badgeDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+  /* repository link on a project card */
+  .repo{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:'JetBrains Mono',monospace;
+    font-size:.72rem;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);
+    border-radius:999px;padding:7px 15px;text-decoration:none;direction:ltr;
+    transition:color .25s,border-color .25s,background .25s,transform .25s var(--spring)}
+  .repo svg{width:14px;height:14px;fill:currentColor}
+  .repo:hover{color:var(--on-accent);background:var(--rose-deep);border-color:var(--rose-deep);transform:translateY(-2px)}
+
+
+  /* ==========================================================
+     Paw cursor — a cat crosses the page with you
+     ========================================================== */
+  .paw-cur,.paw-step{position:fixed;top:0;left:0;right:auto;pointer-events:none;z-index:200;
+    will-change:transform;opacity:0}
+  html[dir="rtl"] .paw-cur,html[dir="rtl"] .paw-step{left:0;right:auto}
+  .paw-cur{width:30px;height:30px;margin:-15px 0 0 -15px;transition:opacity .35s}
+  .paw-cur svg{width:100%;height:100%;fill:var(--rose-deep);
+    transition:transform .35s var(--spring),fill .3s}
+  .paw-cur.live{opacity:1}
+  .paw-cur.hot svg{transform:scale(1.5)}
+  /* over text the paw stops covering the letter and blends with it
+     instead: multiply on the light theme, screen on the dark one, so the
+     letter shows through while the paw stays rose either way */
+  .paw-cur.ink{mix-blend-mode:multiply}
+  .paw-cur.ink svg{fill:var(--rose)}
+  html[data-theme="dark"] .paw-cur.ink{mix-blend-mode:screen}
+  html[data-theme="dark"] .paw-cur.ink svg{fill:var(--rose)}
+  .paw-cur.press svg{transform:scale(.82)}
+  .paw-step{width:19px;height:19px;margin:-9.5px 0 0 -9.5px;z-index:199;
+    animation:stepFade 1.25s var(--out) forwards}
+  .paw-step svg{width:100%;height:100%;fill:var(--rose)}
+  @keyframes stepFade{0%{opacity:0}18%{opacity:.6}100%{opacity:0}}
+  html.paw-on,html.paw-on *{cursor:none !important}
+
+  /* ==========================================================
+     What I do — rows that open, by hover on a laptop and by
+     scroll on a phone
+     ========================================================== */
+  .do-list{border-top:1px solid var(--line)}
+  .do{position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+  .do::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--tint),transparent 78%);
+    transform:scaleX(0);transform-origin:left;transition:transform .55s var(--out);pointer-events:none}
+  html[dir="rtl"] .do::before{transform-origin:right;background:linear-gradient(270deg,var(--tint),transparent 78%)}
+  .do.on::before{transform:scaleX(1)}
+  .do-head{position:relative;z-index:1;display:flex;align-items:center;gap:18px;padding:26px 4px}
+  .do-num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--rose-deep);opacity:.6;
+    min-width:24px;transition:opacity .35s}
+  .do.on .do-num{opacity:1}
+  .do h3{flex:1;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:-.025em;
+    font-size:clamp(1.32rem,3.5vw,2.05rem);line-height:1.2;
+    transition:transform .5s var(--out),color .35s var(--ease)}
+  .do.on h3{transform:translateX(12px);color:var(--rose-deep)}
+  html[dir="rtl"] .do.on h3{transform:translateX(-12px)}
+  .do-mark{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .35s,border-color .35s,transform .45s var(--spring)}
+  .do-mark svg{width:15px;height:15px;stroke:var(--rose-deep);fill:none;stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
+  html[dir="rtl"] .do-mark svg{transform:scaleX(-1)}
+  .do.on .do-mark{background:var(--rose-deep);border-color:var(--rose-deep);transform:rotate(45deg)}
+  .do.on .do-mark svg{stroke:var(--on-accent)}
+  .do-body{position:relative;z-index:1;max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .6s var(--out),opacity .4s var(--ease),padding .6s var(--out)}
+  .do.on .do-body{max-height:230px;opacity:1;padding:0 0 28px}
+  .do-body p{max-width:620px;font-size:.95rem;color:var(--ink-soft);padding-inline-start:42px}
+  @media (max-width:720px){
+    .do-head{gap:14px;padding:22px 2px}
+    .do-body p{padding-inline-start:0;font-size:.9rem}
+    .do.on h3{transform:none}
+    html[dir="rtl"] .do.on h3{transform:none}
+  }
+
   /* ==========================================================
      Responsive
      ========================================================== */
@@ -595,11 +819,16 @@
     .reveal,.reveal-tilt,.reveal-flip{opacity:1;transform:none;filter:none}
     .btn::after{display:none}
     .btn:hover,.card:hover,.focus:hover,.stat:hover,.pill:hover,.to-top.show:hover{transform:none}
+    .card::after,.featured::after,.cert::after{display:none}
+    .paw-cur,.paw-step{display:none}
+    .do-body{max-height:none;opacity:1;padding:0 0 28px}
+    .trace span{opacity:1}
   }
 </style>
 </head>
 <body>
 
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <nav id="nav">
@@ -607,9 +836,11 @@
     <a class="logo" href="#top" data-i18n="logo">Haifa<span>.</span></a>
     <div class="nav-right">
       <ul class="nav-links" id="nav-links">
+        <li class="nav-pill" id="nav-pill" aria-hidden="true"></li>
         <li><a href="#about" data-i18n="nav_about">About</a></li>
         <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
         <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+        <li><a href="#education" data-i18n="nav_edu">Education</a></li>
         <li><a href="#certs" data-i18n="nav_certs">Certifications</a></li>
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
@@ -627,11 +858,13 @@
     <a href="#about" data-i18n="nav_about">About</a>
     <a href="#projects" data-i18n="nav_projects">Projects</a>
     <a href="#skills" data-i18n="nav_skills">Skills</a>
+    <a href="#education" data-i18n="nav_edu">Education</a>
     <a href="#certs" data-i18n="nav_certs">Certifications</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
   </div>
 </nav>
 
+<span id="main" tabindex="-1"></span>
 <header id="top">
   <div class="wrap">
     <div class="hero-grid">
@@ -645,8 +878,8 @@
           <a class="btn btn-ghost" href="#contact" data-i18n="cta_contact">Get in touch</a>
         </div>
         <div class="stats hero-in d5">
-          <div class="stat"><span class="stat-num" data-count="6">0</span><span class="stat-label" data-i18n="st_proj">Projects</span></div>
-          <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="st_cert">Certificates</span></div>
+          <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label" data-i18n="st_proj">Projects</span></div>
+          <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-label" data-i18n="st_cert">Certificates</span></div>
           <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label" data-i18n="st_lang">Languages</span></div>
         </div>
       </div>
@@ -655,9 +888,13 @@
       <div class="panel hero-in d6" aria-hidden="true">
         <div class="panel-bar">
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="panel-name">pipeline.py</span>
+          <div class="panel-tabs" id="panel-tabs">
+            <button class="ptab active" type="button" data-view="pipe">pipeline.py</button>
+            <button class="ptab" type="button" data-view="agent">agent.py</button>
+          </div>
         </div>
         <div class="panel-body">
+        <div class="view on" data-view="pipe">
           <div class="flow" id="flow">
             <div class="node"><b><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.6 3.1 3 7 3s7-1.4 7-3V6"/></svg></b><small data-i18n="fl1">Ingest</small></div>
             <span class="link"></span>
@@ -684,6 +921,31 @@
             <circle class="pt" cx="288" cy="18" r="4.5"/>
           </svg>
         </div>
+
+        <!-- view 2: the agent loop — plan, act, observe, reflect -->
+        <div class="view" data-view="agent">
+          <svg class="loop" viewBox="0 0 300 150" role="img" aria-label="">
+            <circle class="ring" cx="150" cy="72" r="46"/>
+            <circle class="arc" cx="150" cy="72" r="46"/>
+            <circle class="nd" cx="150" cy="26" r="8"/><circle class="nd-in" cx="150" cy="26" r="3.4"/>
+            <circle class="nd" cx="196" cy="72" r="8"/><circle class="nd-in" cx="196" cy="72" r="3.4" style="animation-delay:1.2s"/>
+            <circle class="nd" cx="150" cy="118" r="8"/><circle class="nd-in" cx="150" cy="118" r="3.4" style="animation-delay:2.4s"/>
+            <circle class="nd" cx="104" cy="72" r="8"/><circle class="nd-in" cx="104" cy="72" r="3.4" style="animation-delay:3.6s"/>
+            <g class="orbit"><circle cx="150" cy="26" r="4.6" fill="var(--rose-deep)"/></g>
+            <text x="150" y="11" text-anchor="middle" data-i18n="ag1">PLAN</text>
+            <text x="212" y="76" text-anchor="start" data-i18n="ag2">ACT</text>
+            <text x="150" y="142" text-anchor="middle" data-i18n="ag3">OBSERVE</text>
+            <text x="88" y="76" text-anchor="end" data-i18n="ag4">REFLECT</text>
+          </svg>
+          <div class="trace" aria-hidden="true">
+            <span>&rsaquo; plan: route the question</span>
+            <span>&rsaquo; tool: search_kb("care_guide")</span>
+            <span>&rsaquo; check: verify against sources</span>
+            <span class="ok">✓ answer ready</span>
+          </div>
+        </div>
+
+        </div>
       </div>
 
     </div>
@@ -696,22 +958,39 @@
       <h2 data-i18n="h_about">Three areas, one goal</h2>
       <p class="sec-sub" data-i18n="sub_about">I build at the intersection of data, intelligent systems, and clean user experiences.</p>
     </div>
-    <div class="focus-grid">
-      <div class="focus reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-8"/><circle cx="3" cy="17" r="1.5"/><circle cx="8" cy="12" r="1.5"/><circle cx="12" cy="16" r="1.5"/><circle cx="20" cy="8" r="1.5"/></svg></div>
-        <h3 data-i18n="f1_t">AI &amp; Data Science</h3>
-        <p data-i18n="f1_d">Machine learning, predictive modeling, and turning raw datasets into clear, decision-ready insights with Python and Power BI.</p>
-      </div>
-      <div class="focus reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h4l2 3h5l2-3h5"/><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/><circle cx="12" cy="14" r="2.5"/></svg></div>
-        <h3 data-i18n="f4_t">Data Engineering</h3>
-        <p data-i18n="f4_d">Designing the path data travels — ingestion, cleaning, transformation, and modeling so analysis starts from something trustworthy.</p>
-      </div>
-      <div class="focus reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
-        <h3 data-i18n="f2_t">Databases</h3>
-        <p data-i18n="f2_d">Relational design, SQL, Oracle APEX, and NoSQL with MongoDB — structured data that applications can rely on.</p>
-      </div>
+    <div class="do-list" id="do-list">
+      <article class="do reveal" tabindex="0">
+        <div class="do-head">
+          <span class="do-num">01</span>
+          <h3 data-i18n="f1_t">AI &amp; Data Science</h3>
+          <span class="do-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="do-body"><p data-i18n="f1_d">Machine learning, predictive modeling, and turning raw datasets into clear, decision-ready insights with Python and Power BI.</p></div>
+      </article>
+      <article class="do reveal" tabindex="0">
+        <div class="do-head">
+          <span class="do-num">02</span>
+          <h3 data-i18n="f4_t">Data Engineering</h3>
+          <span class="do-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="do-body"><p data-i18n="f4_d">Designing the path data travels — ingestion, cleaning, transformation, and modeling so analysis starts from something trustworthy.</p></div>
+      </article>
+      <article class="do reveal" tabindex="0">
+        <div class="do-head">
+          <span class="do-num">03</span>
+          <h3 data-i18n="f5_t">Agentic AI</h3>
+          <span class="do-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="do-body"><p data-i18n="f5_d">Designing agents that plan, call tools, and finish multi-step tasks — with memory, guardrails, and evaluation on every run.</p></div>
+      </article>
+      <article class="do reveal" tabindex="0">
+        <div class="do-head">
+          <span class="do-num">04</span>
+          <h3 data-i18n="f2_t">Databases</h3>
+          <span class="do-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="do-body"><p data-i18n="f2_d">Relational design, SQL, Oracle APEX, and NoSQL with MongoDB — structured data that applications can rely on.</p></div>
+      </article>
     </div>
   </div>
 </section>
@@ -724,9 +1003,10 @@
     </div>
 
     <div class="filters reveal" role="group" aria-label="Filter projects">
-      <button class="chip" data-filter="all" aria-pressed="true"><span data-i18n="fil_all">All</span><span class="n">6</span></button>
+      <button class="chip" data-filter="all" aria-pressed="true"><span data-i18n="fil_all">All</span><span class="n">7</span></button>
+      <button class="chip" data-filter="agents" aria-pressed="false"><span data-i18n="fil_agents">Agentic AI</span><span class="n">1</span></button>
       <button class="chip" data-filter="de" aria-pressed="false"><span data-i18n="fil_de">Data Engineering</span><span class="n">1</span></button>
-      <button class="chip" data-filter="ai" aria-pressed="false"><span data-i18n="fil_ai">AI &amp; ML</span><span class="n">1</span></button>
+      <button class="chip" data-filter="ai" aria-pressed="false"><span data-i18n="fil_ai">AI &amp; ML</span><span class="n">2</span></button>
       <button class="chip" data-filter="db" aria-pressed="false"><span data-i18n="fil_db">Databases</span><span class="n">2</span></button>
       <button class="chip" data-filter="dev" aria-pressed="false"><span data-i18n="fil_dev">Apps &amp; Web</span><span class="n">3</span></button>
     </div>
@@ -734,17 +1014,57 @@
     <div id="project-pool">
 
     <!-- ==========================================================
-         NEW PROJECT — DATA ENGINEERING
-         Replace the title/description/tags below with the real
-         details of the pipeline (source, tools, and outcome).
+         NEW PROJECT — AGENTIC AI
+         Swap the title / description / tags for the real build.
+         Text lives in the dictionary as pa_t / pa_d / pa_long (en + ar).
+         ========================================================== -->
+    <article class="featured reveal-tilt" data-cat="agents ai" data-key="pa" tabindex="0" role="button" aria-label="Open project details">
+      <div class="featured-body">
+        <span class="badge new" data-i18n="badge_new">New</span>
+        <h3 data-i18n="pa_t">Meow Clinic — Cat Care Assistant</h3>
+        <p data-i18n="pa_d">An agentic assistant for a cat clinic's clients. A model routes every question to the knowledge base that can answer it, tools do the arithmetic instead of guessing it, each cat is remembered across separate conversations, and nothing gets booked until a staff member approves it.</p>
+        <div class="tags"><span class="tag">LangGraph</span><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Chroma</span><span class="tag">Groq</span></div>
+        <a class="repo" href="https://github.com/haifaahmed772-code/meow-cat-assistant" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> meow-cat-assistant</a>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="featured-visual" aria-hidden="true">
+        <svg class="agent" viewBox="0 0 240 170">
+          <line class="wire" x1="120" y1="85" x2="46" y2="42"/>
+          <line class="wire" x1="120" y1="85" x2="194" y2="42"/>
+          <line class="wire" x1="120" y1="85" x2="46" y2="128"/>
+          <line class="wire" x1="120" y1="85" x2="194" y2="128"/>
+          <circle class="core-ring" cx="120" cy="85" r="26"/>
+          <path class="core" d="M100 78l6-13 10 7zM140 78l-6-13-10 7z"/>
+          <rect class="core" x="100" y="70" width="40" height="35" rx="13"/>
+          <g stroke="var(--on-accent)" stroke-width="2.2" stroke-linecap="round" fill="none">
+            <path d="M111 84v2.5M129 84v2.5"/>
+            <path d="M116 93a4.6 4.6 0 0 0 8 0"/>
+            <path d="M96 88h9M96 94h9M144 88h-9M144 94h-9" opacity=".55"/>
+          </g>
+          <rect class="tool" x="28" y="28" width="36" height="28" rx="9"/>
+          <path class="glyph" d="M38 42h16M38 47h10"/>
+          <rect class="tool" x="176" y="28" width="36" height="28" rx="9" style="animation-delay:.6s"/>
+          <path class="glyph" d="M186 46l6-8 6 8" />
+          <rect class="tool" x="28" y="114" width="36" height="28" rx="9" style="animation-delay:1.2s"/>
+          <circle class="glyph" cx="46" cy="128" r="7"/>
+          <rect class="tool" x="176" y="114" width="36" height="28" rx="9" style="animation-delay:1.8s"/>
+          <path class="glyph" d="M186 132l5 5 11-11"/>
+        </svg>
+      </div>
+    </article>
+
+    <!-- ==========================================================
+         DATA ENGINEERING CAPSTONE — SDAIA
+         github.com/haifaahmed772-code/capstone-data-engineering-cats
          Text lives in the dictionary as pd_t / pd_d / pd_long.
          ========================================================== -->
     <article class="featured reveal-tilt" data-cat="de db" data-key="pd" tabindex="0" role="button" aria-label="Open project details">
       <div class="featured-body">
-        <span class="badge new" data-i18n="badge_new">✦ New</span>
-        <h3 data-i18n="pd_t">Data Engineering Pipeline</h3>
-        <p data-i18n="pd_d">An end-to-end pipeline that moves data from raw source to analysis-ready tables: ingestion, cleaning, transformation, and loading into a structured model that dashboards and machine learning can build on.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">ETL</span><span class="tag">Data Modeling</span></div>
+        <span class="badge" data-i18n="badge_featured">Featured</span>
+        <h3 data-i18n="pd_t">Cat Shelter Data Platform</h3>
+        <p data-i18n="pd_d">An end-to-end pipeline for a cat shelter: streaming ingestion with a data contract at the boundary, a Bronze / Silver / Gold Delta lakehouse, a hybrid-search knowledge index over care documents, and one Airflow DAG running all of it behind a quality gate.</p>
+        <div class="tags"><span class="tag">Kafka</span><span class="tag">Delta Lake</span><span class="tag">PySpark</span><span class="tag">Airflow</span><span class="tag">RAG</span></div>
+        <a class="repo" href="https://github.com/haifaahmed772-code/capstone-data-engineering-cats" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> capstone-data-engineering-cats</a>
         <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
       <div class="featured-visual" aria-hidden="true">
@@ -770,7 +1090,7 @@
 
     <article class="featured reveal-tilt" data-cat="dev" data-key="p2" tabindex="0" role="button" aria-label="Open project details">
       <div class="featured-body">
-        <span class="badge" data-i18n="badge_featured">★ Featured</span>
+        <span class="badge" data-i18n="badge_featured">Featured</span>
         <h3 data-i18n="p2_t">Flora Application</h3>
         <p data-i18n="p2_d">A women-focused app offering relaxing activities and personalized experiences. Designed end-to-end with a calming UI/UX — soft palettes, organized navigation, and interactive features built around the user's wellbeing.</p>
         <div class="tags"><span class="tag">UI/UX</span><span class="tag">App Development</span><span class="tag">Apple Developer Academy</span></div>
@@ -837,8 +1157,12 @@
       <div class="skill-box reveal">
         <h3 data-i18n="sk_tech">Technical</h3>
         <div class="pill-row js-pills">
+          <span class="pill" data-i18n="sk6">Agentic AI Systems</span><span class="pill">LLMs</span><span class="pill">RAG</span>
+          <span class="pill" data-i18n="sk7">Prompt Engineering</span><span class="pill">LangGraph</span><span class="pill">LangChain</span>
           <span class="pill">Python</span><span class="pill" data-i18n="sk1">Machine Learning</span><span class="pill" data-i18n="sk2">Data Analysis</span>
           <span class="pill">SQL</span><span class="pill" data-i18n="sk5">ETL &amp; Data Pipelines</span><span class="pill">Power BI</span>
+          <span class="pill">Kafka</span><span class="pill">PySpark</span><span class="pill">Delta Lake</span><span class="pill">Airflow</span>
+          <span class="pill">PyTorch</span><span class="pill">Keras</span>
           <span class="pill" data-i18n="sk3">Data Visualization</span><span class="pill">MongoDB</span><span class="pill">Oracle APEX</span>
           <span class="pill">JavaScript</span><span class="pill">HTML &amp; CSS</span><span class="pill">Java Sockets</span>
           <span class="pill" data-i18n="sk4">Web Development</span>
@@ -894,65 +1218,86 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <h2 data-i18n="h_certs">Certifications</h2>
-      <p class="sec-sub" data-i18n="sub_certs">Seven professional certificates in AI, data engineering, and application development.</p>
+      <p class="sec-sub" data-i18n="sub_certs">Eight professional certificates in agentic AI, data engineering, and application development. Tap any card for details.</p>
     </div>
     <div class="cert-list" id="cert-list">
 
-      <div class="cert is-new reveal-tilt">
+      <!-- ==========================================================
+           NEW CERTIFICATE — SDAIA
+           Text lives in the dictionary as c8_t / c8_m / c8_d / c8_long
+           ========================================================== -->
+      <div class="cert is-new reveal-tilt" data-key="c8" tabindex="0" role="button" aria-label="Open certificate details">
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
+        <span class="cert-flag" data-i18n="cert_latest">Latest</span>
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="6" y="8" width="12" height="10" rx="3"/><path d="M12 3v5M9 13h.01M15 13h.01M3 11v3M21 11v3"/></svg></div>
+        <h3 data-i18n="c8_t">Building Agentic AI Systems</h3>
+        <p class="meta" data-i18n="c8_m">SDAIA — Saudi Data &amp; AI Authority</p>
+        <p data-i18n="c8_d">Designing AI agents that plan, use tools, and act — orchestration, memory, and evaluation across multi-step agentic workflows.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+
+      <div class="cert reveal-tilt" data-key="c7" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <!-- Update c7_t in the dictionary with the exact program name on the certificate -->
-        <h3 data-i18n="c7_t">Data Engineering for Modern AI Systems</h3>
+        <h3 data-i18n="c7_t">Modern Data Engineering for AI Systems</h3>
         <p class="meta" data-i18n="c7_m">SDAIA — Saudi Data &amp; AI Authority</p>
         <p data-i18n="c7_d">Data pipelines, ETL processes, and data modeling for the infrastructure modern AI systems are built on.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c1" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
-        <h3 data-i18n="c1_t">Introducing Generative AI</h3>
+        <h3 data-i18n="c1_t">Introducing Generative AI with AWS</h3>
         <p class="meta">Amazon Web Services</p>
-        <p data-i18n="c1_d">Generative AI concepts, AI frameworks, and cloud-based AI technologies.</p>
+        <p data-i18n="c1_d">Generative AI concepts and the deep learning frameworks underneath them — PyTorch and Keras — alongside AWS cloud services.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c2" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <h3 data-i18n="c2_t">Artificial Intelligence Fundamentals</h3>
         <p class="meta">IBM</p>
         <p data-i18n="c2_d">AI fundamentals, model training, machine learning, and Generative AI techniques.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c3" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <h3 data-i18n="c3_t">MongoDB for SQL Professionals</h3>
         <p class="meta">MongoDB</p>
         <p data-i18n="c3_d">NoSQL databases, MongoDB operations, and database management.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c4" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <h3 data-i18n="c4_t">Data Analysis with Power BI</h3>
         <p class="meta" data-i18n="c4_m">Bayan Academy</p>
         <p data-i18n="c4_d">Business intelligence, dashboards, and data visualization.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c5" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <h3 data-i18n="c5_t">Application Developer</h3>
         <p class="meta" data-i18n="c5_m">Apple Developer Academy &amp; Tuwaiq</p>
         <p data-i18n="c5_d">App development, problem-solving, and project implementation.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
-      <div class="cert reveal-tilt">
+      <div class="cert reveal-tilt" data-key="c6" tabindex="0" role="button" aria-label="Open certificate details">
         <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="28"/></svg>
         <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg></div>
         <h3>IELTS</h3>
         <p class="meta" data-i18n="c6_m">English Proficiency</p>
         <p data-i18n="c6_d">Certified English language proficiency qualification.</p>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
 
     </div>
@@ -966,9 +1311,14 @@
       <p data-i18n="contact_d">To connect regarding professional opportunities in AI, data science, data engineering, and software development. Riyadh, Saudi Arabia.</p>
       <div class="contact-row">
         <a class="btn btn-primary" id="email-btn" href="#" rel="nofollow" data-i18n="btn_email">✉ Email me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/haifa-alsulami-a00267353" target="_blank" rel="noopener" data-i18n="btn_li"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/></svg> LinkedIn</a>
         <a class="btn btn-ghost" href="tel:+966581228240"><span data-i18n="btn_call">📞 Call</span>&nbsp;<span class="phone-num">+966 58 122 8240</span></a>
       </div>
-      <p style="margin-top:22px;font-size:.85rem;color:var(--ink-soft)" id="email-display" aria-label="email address"></p>
+      <button class="mail-chip" type="button" id="email-copy" aria-label="Copy email address">
+        <span id="email-display"></span>
+        <svg class="cp" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M15 5.5A2.5 2.5 0 0 0 12.5 3h-7A2.5 2.5 0 0 0 3 5.5v7A2.5 2.5 0 0 0 5.5 15"/></svg>
+        <svg class="ck" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -976,7 +1326,11 @@
 <footer>
   <div class="wrap foot">
     <span data-i18n="foot_c">© 2026 Haifa Alsulami</span>
-    <span data-i18n="foot_loc">Riyadh, Saudi Arabia</span>
+    <span class="foot-links">
+      <a href="https://www.linkedin.com/in/haifa-alsulami-a00267353" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/haifaahmed772-code" target="_blank" rel="noopener">GitHub</a>
+      <span data-i18n="foot_loc">Riyadh, Saudi Arabia</span>
+    </span>
   </div>
 </footer>
 
@@ -992,6 +1346,8 @@
     <div class="modal-tags" id="modal-tags"></div>
   </div>
 </div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <button class="to-top" id="to-top" aria-label="Back to top">
   <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -1050,6 +1406,7 @@
     var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
     var ticking = false;
 
+
     function frame() {
       var y = window.scrollY || window.pageYOffset;
       var max = document.documentElement.scrollHeight - window.innerHeight;
@@ -1060,7 +1417,13 @@
       var mid = y + window.innerHeight * 0.34;
       var active = -1;
       sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
-      links.forEach(function (a, i) { a.classList.toggle('active', i === active); });
+      var changed = false;
+      links.forEach(function (a, i) {
+        var on = i === active;
+        if (a.classList.contains('active') !== on) changed = true;
+        a.classList.toggle('active', on);
+      });
+      if (changed) document.dispatchEvent(new CustomEvent('nav:active'));
 
       if (timeline) {
         var r = timeline.getBoundingClientRect();
@@ -1092,7 +1455,74 @@
       e.preventDefault();
       window.location.href = 'mailto:' + addr;
     });
-    document.getElementById('email-display').textContent = addr.replace('\u0040', ' [at] ');
+    document.getElementById('email-display').textContent = addr;
+
+    /* copy to clipboard, with a toast that speaks the active language */
+    var toast = document.getElementById('toast');
+    var toastTimer = null;
+    function say(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(function () { toast.classList.remove('show'); }, 2200);
+    }
+    var chip = document.getElementById('email-copy');
+    var chipTimer;
+    chip.addEventListener('click', function () {
+      var done = function () {
+        say(window.I18N_DICT[window.I18N_LANG].toast_copied);
+        chip.classList.add('copied');
+        window.clearTimeout(chipTimer);
+        chipTimer = window.setTimeout(function () { chip.classList.remove('copied'); }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(done, function () { fallback(); });
+      } else { fallback(); }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = addr;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { /* ignore */ }
+        ta.remove();
+      }
+    });
+  })();
+
+  /* ============================================================
+     3b) Hero panel views — pipeline / agent, auto-rotating
+     ============================================================ */
+  (function () {
+    var tabs = document.getElementById('panel-tabs');
+    if (!tabs) return;
+    var btns = Array.prototype.slice.call(tabs.querySelectorAll('.ptab'));
+    var views = Array.prototype.slice.call(document.querySelectorAll('.panel-body .view'));
+    var auto = null;
+    var manual = false;
+
+    function show(name) {
+      btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-view') === name); });
+      views.forEach(function (v) { v.classList.toggle('on', v.getAttribute('data-view') === name); });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        manual = true;
+        window.clearInterval(auto);
+        show(b.getAttribute('data-view'));
+      });
+    });
+    if (!reduce) {
+      var order = ['pipe', 'agent'];
+      var i = 0;
+      auto = window.setInterval(function () {
+        if (manual) return;
+        i = (i + 1) % order.length;
+        show(order[i]);
+      }, 8000);
+    }
   })();
 
   /* ============================================================
@@ -1111,11 +1541,56 @@
   })();
 
   /* ============================================================
+     4b) Nav bar — one pill slides between the links, and each
+         label rolls over to its twin on hover
+     ============================================================ */
+  (function () {
+    var list = document.getElementById('nav-links');
+    var pill = document.getElementById('nav-pill');
+    if (!list || !pill) return;
+    var links = Array.prototype.slice.call(list.querySelectorAll('a'));
+
+    function roll() {
+      links.forEach(function (a) {
+        if (a.querySelector('.roll')) return;
+        var word = a.innerHTML;
+        a.innerHTML = '<span class="roll"><i>' + word + '</i><i aria-hidden="true">' + word + '</i></span>';
+      });
+    }
+
+    function move(a, hot) {
+      if (!a) { pill.classList.remove('show', 'hot'); return; }
+      var box = a.parentElement || a;          /* the <li>, measured against the list */
+      pill.style.left = box.offsetLeft + 'px';
+      pill.style.width = box.offsetWidth + 'px';
+      pill.classList.add('show');
+      pill.classList.toggle('hot', !!hot);
+    }
+
+    function settle() {
+      var active = links.filter(function (a) { return a.classList.contains('active'); })[0];
+      move(active, false);
+    }
+
+    roll();
+    links.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { move(a, true); });
+      a.addEventListener('focus', function () { move(a, true); });
+      a.addEventListener('blur', settle);
+    });
+    list.addEventListener('mouseleave', settle);
+    window.addEventListener('resize', settle, { passive: true });
+    document.addEventListener('i18n:change', function () { roll(); settle(); });
+    document.addEventListener('nav:active', settle);
+    window.setTimeout(settle, 60);
+  })();
+
+  /* ============================================================
      5) Reveal on scroll — cards lift, certificates turn in
      ============================================================ */
   (function () {
     var els = document.querySelectorAll('.reveal, .reveal-tilt, .reveal-flip');
-    document.querySelectorAll('.grid, .focus-grid, .cert-list, .skills-cols, #project-pool').forEach(function (group) {
+    document.querySelectorAll('.grid, .do-list, .cert-list, .skills-cols, #project-pool').forEach(function (group) {
       Array.prototype.forEach.call(group.children, function (child, i) {
         child.setAttribute('data-stagger', i * 80);
       });
@@ -1189,7 +1664,7 @@
     if (!flow || reduce) { if (flow) flow.querySelectorAll('.node').forEach(function (n) { n.classList.add('lit'); }); return; }
     var parts = Array.prototype.slice.call(flow.children);
     var i = 0;
-    setInterval(function () {
+    window.setInterval(function () {
       parts.forEach(function (p) { p.classList.remove('lit'); });
       for (var k = 0; k <= i && k < parts.length; k++) parts[k].classList.add('lit');
       i = (i + 1) % (parts.length + 2);
@@ -1201,9 +1676,10 @@
      ============================================================ */
   (function () {
     var track = document.getElementById('mq-track');
-    var items = ['Python', 'SQL', 'ETL', 'Power BI', 'MongoDB', 'Oracle APEX',
-                 'Data Modeling', 'Machine Learning', 'Data Analysis',
-                 'Java Sockets', 'JavaScript', 'HTML & CSS'];
+    var items = ['Agentic AI', 'LangGraph', 'LLMs', 'RAG', 'Kafka', 'Delta Lake', 'Airflow', 'PySpark',
+                 'PyTorch', 'Keras', 'Python', 'SQL', 'ETL',
+                 'Power BI', 'MongoDB', 'Oracle APEX', 'Data Modeling',
+                 'Machine Learning', 'Data Analysis', 'Java Sockets', 'JavaScript', 'HTML & CSS'];
     var html = items.map(function (t) { return '<span class="mq">' + t + '</span>'; }).join('');
     track.innerHTML = html + html;
 
@@ -1258,7 +1734,7 @@
      ============================================================ */
   (function () {
     if (reduce || isTouch) return;
-    document.querySelectorAll('.card, .featured').forEach(function (el) {
+    document.querySelectorAll('.card, .featured, .cert').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
@@ -1271,7 +1747,21 @@
   })();
 
   /* ============================================================
-     11) Project detail modal
+     10b) Pointer spotlight — the rose glow follows the cursor
+     ============================================================ */
+  (function () {
+    if (reduce || isTouch) return;
+    document.querySelectorAll('.card, .featured, .cert, .focus').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    });
+  })();
+
+  /* ============================================================
+     11) Project & certificate detail modal
      ============================================================ */
   (function () {
     var modal = document.getElementById('modal');
@@ -1301,7 +1791,7 @@
 
     document.querySelectorAll('[data-key]').forEach(function (el) {
       function fire(e) {
-        if (e.target.closest('.award')) return;
+        if (e.target.closest('.award') || e.target.closest('a')) return;
         var tags = Array.prototype.map.call(el.querySelectorAll('.tag'), function (x) { return x.textContent; });
         open(el.getAttribute('data-key'), tags);
       }
@@ -1363,12 +1853,117 @@
   })();
 
   /* ============================================================
-     13) Language — English / Arabic (Thmanyah typeface)
+     13) What I do — hover opens a row on a laptop, scrolling
+         opens it on a phone
+     ============================================================ */
+  (function () {
+    var list = document.getElementById('do-list');
+    if (!list) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('.do'));
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function only(row) {
+      rows.forEach(function (r) { r.classList.toggle('on', r === row); });
+    }
+
+    if (canHover) {
+      rows.forEach(function (r) {
+        r.addEventListener('mouseenter', function () { only(r); });
+        r.addEventListener('focus', function () { only(r); });
+      });
+      list.addEventListener('mouseleave', function () { only(null); });
+      return;
+    }
+
+    /* phones: the row nearest the middle of the screen is the open one */
+    if (!('IntersectionObserver' in window)) { rows.forEach(function (r) { r.classList.add('on'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('on', en.isIntersecting); });
+    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+    rows.forEach(function (r) { io.observe(r); });
+  })();
+
+  /* ============================================================
+     14) The cursor is a cat — pointer devices only
+     ============================================================ */
+  (function () {
+    if (reduce || isTouch || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var PAW = '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="6.6" cy="8.6" rx="2.15" ry="2.8" transform="rotate(-18 6.6 8.6)"/><ellipse cx="11.6" cy="6.4" rx="2.2" ry="3" transform="rotate(-6 11.6 6.4)"/><ellipse cx="16.7" cy="7.9" rx="2.15" ry="2.8" transform="rotate(12 16.7 7.9)"/><ellipse cx="20.2" cy="12.4" rx="1.9" ry="2.4" transform="rotate(26 20.2 12.4)"/><path d="M12.2 10.6c3.7 0 6.3 2.4 6.3 5 0 2.4-2 3.9-4.4 3.5-1.3-.2-2.6-.2-3.9 0-2.4.4-4.4-1.1-4.4-3.5 0-2.6 2.7-5 6.4-5z"/></svg>';
+    var cur = document.createElement('div');
+    cur.className = 'paw-cur';
+    cur.innerHTML = PAW;
+    document.body.appendChild(cur);
+    document.documentElement.classList.add('paw-on');
+
+    var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+    var x = tx, y = ty, ang = 0, shown = false;
+    var lastX = tx, lastY = ty, walked = 0, side = 1;
+
+    function step(px, py, rot) {
+      var el = document.createElement('div');
+      el.className = 'paw-step';
+      el.innerHTML = PAW;
+      el.style.transform = 'translate3d(' + px + 'px,' + py + 'px,0) rotate(' + rot + 'deg)';
+      document.body.appendChild(el);
+      window.setTimeout(function () { el.remove(); }, 1300);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      tx = e.clientX; ty = e.clientY;
+      if (!shown) { shown = true; cur.classList.add('live'); }
+
+      var dx = tx - lastX, dy = ty - lastY;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      walked += d;
+      lastX = tx; lastY = ty;
+
+      /* prints land alternately either side of the path, the way a cat walks */
+      if (walked > 78 && d > 0) {
+        walked = 0;
+        var rot = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+        var nx = -dy / d, ny = dx / d;
+        step(tx + nx * 9 * side, ty + ny * 9 * side, rot + side * 8);
+        side *= -1;
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () { cur.classList.remove('live'); shown = false; });
+    document.addEventListener('mousedown', function () { cur.classList.add('press'); });
+    document.addEventListener('mouseup', function () { cur.classList.remove('press'); });
+    var READABLE = 'p,h1,h2,h3,li,small,blockquote,figcaption,.lede,.sec-sub,.meta,.stat-label,' +
+                   '.panel-name,.tag,.pill,.mq,.eyebrow,.badge,.award,.repo,.trace,.do h3,.t-item,.foot';
+    document.addEventListener('mouseover', function (e) {
+      var hot = e.target.closest('a,button,.card,.featured,.cert,.do,.pill,.chip,.stat,input,[role="button"]');
+      var text = e.target.closest(READABLE);
+      /* solid controls keep the rose paw; running text gets the inverted one */
+      var solid = e.target.closest('.btn,.chip,.icon-btn,.lang-toggle,.award,.badge,.mail-chip,.to-top');
+      cur.classList.toggle('hot', !!hot);
+      cur.classList.toggle('ink', !!text && !solid);
+    });
+
+    (function frame() {
+      x += (tx - x) * 0.22;
+      y += (ty - y) * 0.22;
+      var dx = tx - x, dy = ty - y;
+      if (Math.abs(dx) + Math.abs(dy) > 1.5) {
+        var want = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+        var diff = ((want - ang + 540) % 360) - 180;
+        ang += diff * 0.14;
+      }
+      cur.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) rotate(' + ang.toFixed(1) + 'deg)';
+      window.requestAnimationFrame(frame);
+    })();
+  })();
+
+  /* ============================================================
+     15) Language — English / Arabic (Thmanyah typeface)
      ============================================================ */
   var dict = {
     en: {
       logo: 'Haifa<span>.</span>',
       nav_about: 'About', nav_projects: 'Projects', nav_skills: 'Skills', nav_certs: 'Certifications', nav_contact: 'Contact',
+      nav_edu: 'Education', skip: 'Skip to content',
+      ag1: 'PLAN', ag2: 'ACT', ag3: 'OBSERVE', ag4: 'REFLECT',
       eyebrow: 'AI &amp; Data Science · King Saud University',
       h1: 'Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.',
       lede: 'Information Technology student specializing in AI &amp; Data Science, experienced in Python, SQL, ETL pipelines, and Power BI — applying machine learning and data engineering to turn raw data into decisions.',
@@ -1376,25 +1971,42 @@
       st_proj: 'Projects', st_cert: 'Certificates', st_award: 'KSU Fair', st_lang: 'Languages', st_sfx_st: 'st',
       fl1: 'Ingest', fl2: 'Clean', fl3: 'Model', fl4: 'Insight',
 
-      lbl_about: '// what I do', h_about: 'Three areas, one goal',
+      lbl_about: 'what I do', h_about: 'Three areas, one goal',
       sub_about: 'I build at the intersection of data, intelligent systems, and clean user experiences.',
       f1_t: 'AI &amp; Data Science', f1_d: 'Machine learning, predictive modeling, and turning raw datasets into clear, decision-ready insights with Python and Power BI.',
       f4_t: 'Data Engineering', f4_d: 'Designing the path data travels — ingestion, cleaning, transformation, and modeling so analysis starts from something trustworthy.',
+      f5_t: 'Agentic AI', f5_d: 'Designing agents that plan, call tools, and finish multi-step tasks — with memory, guardrails, and evaluation on every run.',
       f2_t: 'Databases', f2_d: 'Relational design, SQL, Oracle APEX, and NoSQL with MongoDB — structured data that applications can rely on.',
 
-      lbl_projects: '// projects', h_projects: 'Selected work',
+      lbl_projects: 'projects', h_projects: 'Selected work',
       sub_projects: 'Academic and academy projects across data engineering, machine learning, databases, and application development. Tap any card to read more.',
-      fil_all: 'All', fil_de: 'Data Engineering', fil_ai: 'AI &amp; ML', fil_db: 'Databases', fil_dev: 'Apps &amp; Web',
-      badge_featured: '★ Featured', badge_new: '✦ New',
+      fil_all: 'All', fil_agents: 'Agentic AI', fil_de: 'Data Engineering', fil_ai: 'AI &amp; ML', fil_db: 'Databases', fil_dev: 'Apps &amp; Web',
+      badge_featured: 'Featured', badge_new: 'New',
 
-      pd_t: 'Data Engineering Pipeline',
-      pd_meta: 'Data Engineering',
-      pd_d: 'An end-to-end pipeline that moves data from raw source to analysis-ready tables: ingestion, cleaning, transformation, and loading into a structured model that dashboards and machine learning can build on.',
-      pd_long: 'A pipeline project built around one idea: analysis is only as good as the data underneath it. Raw records are pulled from their source, validated, cleaned, reshaped, and loaded into a structured model that reporting and machine learning can query directly.' +
-        '<ul><li>Ingestion of raw data from source files and databases</li>' +
-        '<li>Cleaning and validation — missing values, duplicates, and type mismatches</li>' +
-        '<li>Transformation into a documented, query-friendly schema</li>' +
-        '<li>Loading into tables that feed dashboards and downstream models</li></ul>',
+      pa_t: 'Meow Clinic — Cat Care Assistant',
+      pa_meta: 'Agentic AI · Capstone, SDAIA',
+      pa_d: "An agentic assistant for a cat clinic's clients. A model routes every question to the knowledge base that can answer it, tools do the arithmetic instead of guessing it, each cat is remembered across separate conversations, and nothing gets booked until a staff member approves it.",
+      pa_long: 'Questions from cat owners split into two kinds that share almost nothing — care and behaviour on one side, clinic prices and booking on the other. Rather than search one pile of text for both, the assistant keeps two separate vector stores and decides per question which one to open. Capstone project for Building Agentic AI Systems (SDAIA — Saudi Data &amp; AI Authority), Track C, with Wed Alshalwi.' +
+        '<ul><li>A supervisor model classifies each question as care / clinic / both and hands it to a specialist agent that holds only its own search tool — the separation is structural, not a filter applied afterwards</li>' +
+        '<li>Five tools do the calculating, including daily energy from RER = 70 × weight^0.75 and a boarding quote that applies the second-cat rate, extras, and the five-night discount in order</li>' +
+        '<li>Two kinds of memory: a checkpointer for the conversation, and a Store that remembers each cat across threads that share no history</li>' +
+        '<li>Booking pauses on interrupt() and waits for a staff approval — or a refusal with a reason</li>' +
+        '<li>An evaluator reads every reply against the retrieved text and sends back whatever it cannot support</li>' +
+        '<li>Built with LangGraph, LangChain, Chroma, Groq (llama-3.3-70b), multilingual embeddings, and LangSmith — the corpus is Arabic, so an English-only embedding model retrieves close to randomly while still looking like it works</li></ul>' +
+        '<p style="margin-top:16px"><a href="https://github.com/haifaahmed772-code/meow-cat-assistant" target="_blank" rel="noopener">View the repository on GitHub →</a></p>',
+
+      pd_t: 'Cat Shelter Data Platform',
+      pd_meta: 'Data Engineering · Capstone, SDAIA',
+      pd_d: 'An end-to-end pipeline for a cat shelter: streaming ingestion with a data contract at the boundary, a Bronze / Silver / Gold Delta lakehouse, a hybrid-search knowledge index over care documents, and one Airflow DAG running all of it behind a quality gate.',
+      pd_long: 'A shelter needs two different things at once: trustworthy reports on how many cats it has and what state they are in, and an assistant that answers adopters\u2019 care questions from sources it can cite. One is structured data, the other is not \u2014 this project builds both on the same infrastructure. Capstone for Modern Data Engineering for AI Systems (SDAIA — Saudi Data &amp; AI Authority).' +
+        '<ul><li>Kafka producer and consumer with Pydantic data contracts at the ingestion boundary: of 200 raw records, 170 passed and 30 were routed to a quarantine topic carrying the reason they were rejected</li>' +
+        '<li>A Delta lakehouse in Bronze / Silver / Gold layers, with MERGE upserts keyed on cat_id — Silver went from 170 to 175 rows rather than 190, which is the numeric proof the write is an upsert and not an append</li>' +
+        '<li>Strict schema enforcement, with two rejections kept as evidence: an undeclared extra column and an incompatible type</li>' +
+        '<li>Hybrid retrieval over the care documents — dense embeddings and BM25 fused with RRF, cross-encoder re-ranking, and answers grounded in the retrieved text with citations</li>' +
+        '<li>One Airflow DAG with strict dependencies and a Great Expectations quality gate: two real runs, one fully green and one where the gate fails and every downstream task turns upstream_failed</li>' +
+        '<li>OpenLineage START / COMPLETE / FAIL events emitted for every stage</li>' +
+        '<li>The retrieval answer is extractive by design — the search, fusion, re-ranking, and citations are real, and the extension point for a language model is marked in the code</li></ul>' +
+        '<p style="margin-top:16px"><a href="https://github.com/haifaahmed772-code/capstone-data-engineering-cats" target="_blank" rel="noopener">View the repository on GitHub →</a></p>',
 
       p2_t: 'Flora Application',
       p2_meta: 'UI/UX · App Development',
@@ -1441,13 +2053,14 @@
         '<li>First place at the KSU Project Fair</li></ul>',
       award_net: '1st Place · KSU Project Fair',
 
-      lbl_skills: '// skills', h_skills: 'What I work with',
+      lbl_skills: 'skills', h_skills: 'What I work with',
       sk_tech: 'Technical', sk_soft: 'Soft skills &amp; languages',
       sk1: 'Machine Learning', sk2: 'Data Analysis', sk3: 'Data Visualization', sk4: 'Web Development', sk5: 'ETL &amp; Data Pipelines',
+      sk6: 'Agentic AI Systems', sk7: 'Prompt Engineering',
       ss1: 'Problem Solving', ss2: 'Analytical Thinking', ss3: 'Teamwork', ss4: 'Communication',
       ss5: 'Time Management', ss6: 'Adaptability', ss7: 'Arabic — native', ss8: 'English — IELTS certified',
 
-      lbl_edu: '// education &amp; activities', h_edu: 'Education &amp; Activities',
+      lbl_edu: 'education &amp; activities', h_edu: 'Education &amp; Activities',
       e1_t: 'King Saud University', e1_d: 'Bachelor of Information Technology — AI &amp; Data Science Track',
       e2_t: 'Apple Developer Academy — Tuwaiq', e2_m: 'Application Developer Program',
       e2_d: 'Software development, project management, and UI/UX design.',
@@ -1456,26 +2069,61 @@
       e4_t: 'IT Student Council', e4_m: 'King Saud University',
       e4_d: 'Member supporting student initiatives and activities within the IT department.',
 
-      lbl_certs: '// certifications', h_certs: 'Certifications',
-      sub_certs: 'Seven professional certificates in AI, data engineering, and application development.',
-      c1_t: 'Introducing Generative AI', c1_d: 'Generative AI concepts, AI frameworks, and cloud-based AI technologies.',
+      lbl_certs: 'certifications', h_certs: 'Certifications',
+      sub_certs: 'Eight professional certificates in agentic AI, data engineering, and application development. Tap any card for details.',
+      cert_latest: 'Latest',
+      c8_t: 'Building Agentic AI Systems', c8_m: 'SDAIA — Saudi Data &amp; AI Authority',
+      c8_meta: 'SDAIA · Agentic AI',
+      c8_d: 'Designing AI agents that plan, use tools, and act — orchestration, memory, and evaluation across multi-step agentic workflows.',
+      c8_long: 'A program from SDAIA — the Saudi Data &amp; AI Authority — on building AI systems that do more than answer — systems that decide what to do next, reach for the right tool, and stay accountable for the result.' +
+        '<ul><li>Agent architectures: planning, tool use, and memory</li>' +
+        '<li>Orchestrating multi-step and multi-agent workflows</li>' +
+        '<li>Connecting language models to external tools, APIs, and data</li>' +
+        '<li>Evaluation, guardrails, and reliability of agent behaviour</li></ul>',
+      c1_t: 'Introducing Generative AI with AWS',
+      c1_d: 'Generative AI concepts and the deep learning frameworks underneath them — PyTorch and Keras — alongside AWS cloud services.',
+      c1_meta: 'Amazon Web Services · Generative AI',
+      c1_long: 'An AWS program that goes past the vocabulary and into the frameworks generative models are actually built with.' +
+        '<ul><li>Core generative AI concepts and model families</li>' +
+        '<li>Deep learning with PyTorch and Keras</li>' +
+        '<li>AWS cloud services for training and deployment</li>' +
+        '<li>Practical use cases, and where they stop working</li></ul>',
+      c2_meta: 'IBM',
+      c2_long: 'IBM\u2019s foundations track across the machine learning lifecycle.' +
+        '<ul><li>AI fundamentals and model training</li><li>Machine learning workflows end to end</li><li>Generative AI techniques and applications</li></ul>',
+      c3_meta: 'MongoDB',
+      c3_long: 'The bridge from relational thinking to document databases.' +
+        '<ul><li>Document modeling next to relational schemas</li><li>MongoDB queries, indexes, and operations</li><li>Database management and administration basics</li></ul>',
+      c4_meta: 'Bayan Academy \u00b7 Power BI',
+      c4_long: 'Business intelligence work, from raw table to a dashboard someone can act on.' +
+        '<ul><li>Data modeling and transformation inside Power BI</li><li>Dashboard design and visualization choices</li><li>Reporting that answers a business question</li></ul>',
+      c5_meta: 'Apple Developer Academy &amp; Tuwaiq',
+      c5_long: 'The Application Developer program \u2014 shipping an app, not just writing code.' +
+        '<ul><li>App development from concept to build</li><li>Problem-solving under real project constraints</li><li>Project implementation and delivery</li></ul>',
+      c6_t: 'IELTS', c6_meta: 'English Proficiency',
+      c6_long: 'Certified English language proficiency \u2014 the qualification behind working and studying in English.',
+      c7_meta: 'SDAIA \u00b7 Data Engineering',
+      c7_long: 'A SDAIA program on the infrastructure layer that modern AI is built on.' +
+        '<ul><li>Designing and running data pipelines</li><li>ETL processes and data quality</li><li>Data modeling for analytics and AI workloads</li></ul>',
       c2_t: 'Artificial Intelligence Fundamentals', c2_d: 'AI fundamentals, model training, machine learning, and Generative AI techniques.',
       c3_t: 'MongoDB for SQL Professionals', c3_d: 'NoSQL databases, MongoDB operations, and database management.',
       c4_t: 'Data Analysis with Power BI', c4_m: 'Bayan Academy', c4_d: 'Business intelligence, dashboards, and data visualization.',
       c5_t: 'Application Developer', c5_m: 'Apple Developer Academy &amp; Tuwaiq', c5_d: 'App development, problem-solving, and project implementation.',
       c6_m: 'English Proficiency', c6_d: 'Certified English language proficiency qualification.',
-      c7_t: 'Data Engineering for Modern AI Systems', c7_m: 'SDAIA — Saudi Data &amp; AI Authority',
+      c7_t: 'Modern Data Engineering for AI Systems', c7_m: 'SDAIA — Saudi Data &amp; AI Authority',
       c7_d: 'Data pipelines, ETL processes, and data modeling for the infrastructure modern AI systems are built on.',
 
-      lbl_contact: '// contact', h_contact: 'Contact &amp; opportunities',
+      lbl_contact: 'contact', h_contact: 'Contact &amp; opportunities',
       contact_d: 'To connect regarding professional opportunities in AI, data science, data engineering, and software development. Riyadh, Saudi Arabia.',
-      btn_email: '✉ Email me', btn_call: '📞 Call',
+      btn_li: '<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/></svg> LinkedIn', btn_email: '✉ Email me', btn_call: '📞 Call', btn_copy: '⧉ Copy email', toast_copied: 'Email copied ✓',
       foot_c: '© 2026 Haifa Alsulami', foot_loc: 'Riyadh, Saudi Arabia'
     },
 
     ar: {
       logo: 'هيفاء<span>.</span>',
       nav_about: 'نبذة', nav_projects: 'المشاريع', nav_skills: 'المهارات', nav_certs: 'الشهادات', nav_contact: 'تواصل',
+      nav_edu: 'التعليم', skip: 'تخطي إلى المحتوى',
+      ag1: 'تخطيط', ag2: 'تنفيذ', ag3: 'ملاحظة', ag4: 'مراجعة',
       eyebrow: 'الذكاء الاصطناعي وعلم البيانات · جامعة الملك سعود',
       h1: 'هيفاء السلمي<br>تحوّل البيانات إلى <em>حلول ذكية</em>.',
       lede: 'طالبة تقنية معلومات متخصصة في الذكاء الاصطناعي وعلم البيانات، بخبرة في Python و SQL وبناء مسارات البيانات و Power BI — أوظّف تعلم الآلة وهندسة البيانات لتحويل البيانات الخام إلى قرارات.',
@@ -1483,25 +2131,42 @@
       st_proj: 'مشاريع', st_cert: 'شهادات', st_award: 'معرض الجامعة', st_lang: 'لغتان', st_sfx_st: '',
       fl1: 'استقبال', fl2: 'تنظيف', fl3: 'نمذجة', fl4: 'رؤية',
 
-      lbl_about: '// مجالاتي', h_about: 'ثلاثة مجالات، هدف واحد',
+      lbl_about: 'مجالاتي', h_about: 'ثلاثة مجالات، هدف واحد',
       sub_about: 'أبني عند نقطة التقاء البيانات والأنظمة الذكية وتجارب المستخدم النظيفة.',
       f1_t: 'الذكاء الاصطناعي وعلم البيانات', f1_d: 'تعلم الآلة والنمذجة التنبؤية وتحويل البيانات الخام إلى رؤى واضحة تدعم القرار باستخدام Python و Power BI.',
       f4_t: 'هندسة البيانات', f4_d: 'تصميم المسار الذي تسلكه البيانات — من الاستقبال والتنظيف والتحويل حتى النمذجة، حتى يبدأ التحليل من أساس موثوق.',
+      f5_t: 'الذكاء الاصطناعي الوكيل (Agentic AI)', f5_d: 'تصميم وكلاء يخططون ويستخدمون الأدوات وينجزون مهام متعددة الخطوات — بذاكرة وضوابط وتقييم لكل دورة تشغيل.',
       f2_t: 'قواعد البيانات', f2_d: 'التصميم العلائقي و SQL و Oracle APEX و NoSQL مع MongoDB — بيانات منظمة تعتمد عليها التطبيقات.',
 
-      lbl_projects: '// المشاريع', h_projects: 'أعمال مختارة',
+      lbl_projects: 'المشاريع', h_projects: 'أعمال مختارة',
       sub_projects: 'مشاريع أكاديمية وتدريبية تغطي هندسة البيانات وتعلم الآلة وقواعد البيانات وتطوير التطبيقات. اضغطي على أي بطاقة لقراءة التفاصيل.',
-      fil_all: 'الكل', fil_de: 'هندسة البيانات', fil_ai: 'الذكاء الاصطناعي', fil_db: 'قواعد البيانات', fil_dev: 'التطبيقات والويب',
-      badge_featured: '★ مشروع مميز', badge_new: '✦ جديد',
+      fil_all: 'الكل', fil_agents: 'الذكاء الاصطناعي الوكيل', fil_de: 'هندسة البيانات', fil_ai: 'الذكاء الاصطناعي', fil_db: 'قواعد البيانات', fil_dev: 'التطبيقات والويب',
+      badge_featured: 'مشروع مميز', badge_new: 'جديد',
 
-      pd_t: 'مسار هندسة البيانات',
-      pd_meta: 'هندسة البيانات',
-      pd_d: 'مسار متكامل ينقل البيانات من مصدرها الخام إلى جداول جاهزة للتحليل: استقبال وتنظيف وتحويل وتحميل ضمن نموذج منظم تبني عليه لوحات المعلومات ونماذج تعلم الآلة.',
-      pd_long: 'مشروع مبني على فكرة واحدة: التحليل لا يكون أفضل من البيانات التي تحته. تُسحب السجلات الخام من مصدرها، ثم يتم التحقق منها وتنظيفها وإعادة تشكيلها وتحميلها في نموذج منظم يمكن للتقارير ونماذج تعلم الآلة الاستعلام منه مباشرة.' +
-        '<ul><li>استقبال البيانات الخام من الملفات وقواعد البيانات</li>' +
-        '<li>التنظيف والتحقق — القيم الناقصة والتكرارات واختلاف الأنواع</li>' +
-        '<li>التحويل إلى مخطط موثّق وسهل الاستعلام</li>' +
-        '<li>التحميل في جداول تغذي لوحات المعلومات والنماذج</li></ul>',
+      pa_t: 'عيادة مواء — مساعد رعاية القطط',
+      pa_meta: 'الذكاء الاصطناعي الوكيل · مشروع التخرج من سدايا',
+      pa_d: 'مساعد وكيل لعملاء عيادة قطط. نموذج يوجّه كل سؤال إلى قاعدة المعرفة القادرة على الإجابة عليه، وأدوات تُجري الحسابات بدل تخمينها، وكل قطة تُحفظ بياناتها بين محادثات منفصلة، ولا يُحجز أي موعد قبل موافقة أحد الموظفين.',
+      pa_long: 'أسئلة أصحاب القطط تنقسم إلى نوعين لا يجمعهما شيء تقريباً — الرعاية والسلوك من جهة، وأسعار العيادة والحجز من جهة أخرى. وبدل البحث في كومة نصوص واحدة للنوعين، يحتفظ المساعد بقاعدتي معرفة منفصلتين ويقرر مع كل سؤال أيّهما يفتح. مشروع تخرج برنامج Building Agentic AI Systems (سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي)، المسار C، بالتعاون مع ود الشلوي.' +
+        '<ul><li>نموذج مشرف يصنّف كل سؤال إلى رعاية / عيادة / كليهما ويحيله إلى وكيل متخصص لا يملك سوى أداة البحث الخاصة به — الفصل هنا بنيوي وليس مجرد تصفية لاحقة</li>' +
+        '<li>خمس أدوات تتولى الحساب، منها الاحتياج اليومي من الطاقة عبر RER = 70 × الوزن^0.75، وتسعير الإيواء الذي يطبّق سعر القطة الثانية والإضافات وخصم الخمس ليالٍ بالترتيب</li>' +
+        '<li>نوعان من الذاكرة: ذاكرة تحفظ مسار المحادثة، ومخزن يتذكر كل قطة عبر محادثات لا تشترك في أي سياق</li>' +
+        '<li>الحجز يتوقف عند interrupt() وينتظر موافقة الموظف — أو رفضاً مع ذكر السبب</li>' +
+        '<li>مُقيّم يقرأ كل إجابة مقابل النص المسترجَع ويعيد ما لا يستطيع إسناده</li>' +
+        '<li>مبني على LangGraph و LangChain و Chroma و Groq (llama-3.3-70b) وتضمينات متعددة اللغات و LangSmith — المحتوى عربي، ونموذج التضمين الإنجليزي وحده يسترجع نتائج شبه عشوائية وإن بدا أنه يعمل</li></ul>' +
+        '<p style="margin-top:16px"><a href="https://github.com/haifaahmed772-code/meow-cat-assistant" target="_blank" rel="noopener">صفحة المشروع على GitHub ←</a></p>',
+
+      pd_t: 'منصة بيانات ملجأ القطط',
+      pd_meta: 'هندسة البيانات · مشروع التخرج من سدايا',
+      pd_d: 'خط بيانات متكامل لملجأ قطط: استقبال متدفق مع عقد بيانات عند الحدود، ومستودع Delta بطبقات Bronze / Silver / Gold، وفهرس معرفي ببحث هجين على مستندات الرعاية، وكل ذلك يُشغَّل عبر DAG واحد في Airflow خلف بوابة جودة.',
+      pd_long: 'الملجأ يحتاج شيئين في آن واحد: تقارير موثوقة عن أعداد القطط وحالاتها، ومساعد يجيب أسئلة المتبنّين عن الرعاية من مصادر يستطيع الاستشهاد بها. الأول بيانات مهيكلة والثاني ليس كذلك — والمشروع يبني الاثنين على البنية التحتية نفسها. مشروع تخرج برنامج Modern Data Engineering for AI Systems (سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي).' +
+        '<ul><li>Producer و Consumer فعليان في Kafka مع عقود بيانات Pydantic عند حدود الاستيعاب: من ٢٠٠ سجل خام اجتاز ١٧٠ ووُجِّه ٣٠ إلى topic حجر صحي يحمل سبب الرفض</li>' +
+        '<li>مستودع Delta بطبقات Bronze / Silver / Gold مع MERGE على المفتاح cat_id — ارتفعت Silver من ١٧٠ إلى ١٧٥ صفاً لا إلى ١٩٠، وهو الإثبات الرقمي أن العملية upsert وليست append</li>' +
+        '<li>فرض صارم للـ schema مع حالتي رفض موثّقتين: عمود إضافي غير معرّف، ونوع بيانات غير متوافق</li>' +
+        '<li>بحث هجين على مستندات الرعاية — تضمينات كثيفة و BM25 مدموجان بـ RRF، وإعادة ترتيب بـ cross-encoder، وإجابات مرتكزة على النص المسترجَع مع استشهادات</li>' +
+        '<li>DAG واحد في Airflow بتبعيات صارمة وبوابة جودة Great Expectations: تشغيلان حقيقيان، واحد ناجح بالكامل وآخر تفشل فيه البوابة فتتحول المراحل اللاحقة إلى upstream_failed</li>' +
+        '<li>أحداث OpenLineage من نوع START / COMPLETE / FAIL لكل مرحلة</li>' +
+        '<li>إجابة الاسترجاع استخراجية بشكل مقصود — الاسترجاع والدمج وإعادة الترتيب والاستشهادات كلها حقيقية، ونقطة توصيل نموذج لغوي محددة في الكود</li></ul>' +
+        '<p style="margin-top:16px"><a href="https://github.com/haifaahmed772-code/capstone-data-engineering-cats" target="_blank" rel="noopener">صفحة المشروع على GitHub ←</a></p>',
 
       p2_t: 'تطبيق Flora',
       p2_meta: 'تجربة المستخدم · تطوير التطبيقات',
@@ -1548,13 +2213,14 @@
         '<li>المركز الأول في معرض مشاريع جامعة الملك سعود</li></ul>',
       award_net: 'المركز الأول · معرض مشاريع جامعة الملك سعود',
 
-      lbl_skills: '// المهارات', h_skills: 'أدواتي ومهاراتي',
+      lbl_skills: 'المهارات', h_skills: 'أدواتي ومهاراتي',
       sk_tech: 'المهارات التقنية', sk_soft: 'المهارات الشخصية واللغات',
       sk1: 'تعلم الآلة', sk2: 'تحليل البيانات', sk3: 'تصوير البيانات', sk4: 'تطوير الويب', sk5: 'مسارات ومعالجة البيانات',
+      sk6: 'أنظمة الذكاء الاصطناعي الوكيلة', sk7: 'هندسة الأوامر (Prompting)',
       ss1: 'حل المشكلات', ss2: 'التفكير التحليلي', ss3: 'العمل الجماعي', ss4: 'مهارات التواصل',
       ss5: 'إدارة الوقت', ss6: 'المرونة والتكيف', ss7: 'العربية — اللغة الأم', ss8: 'الإنجليزية — شهادة IELTS',
 
-      lbl_edu: '// التعليم والأنشطة', h_edu: 'التعليم والأنشطة',
+      lbl_edu: 'التعليم والأنشطة', h_edu: 'التعليم والأنشطة',
       e1_t: 'جامعة الملك سعود', e1_d: 'بكالوريوس تقنية المعلومات — مسار الذكاء الاصطناعي وعلم البيانات',
       e2_t: 'أكاديمية Apple للمطورين — طويق', e2_m: 'برنامج تطوير التطبيقات',
       e2_d: 'تطوير البرمجيات، إدارة المشاريع، وتصميم تجربة وواجهة المستخدم.',
@@ -1563,20 +2229,53 @@
       e4_t: 'المجلس الطلابي لتقنية المعلومات', e4_m: 'جامعة الملك سعود',
       e4_d: 'عضوة تدعم المبادرات والأنشطة الطلابية في قسم تقنية المعلومات.',
 
-      lbl_certs: '// الشهادات', h_certs: 'الشهادات الاحترافية',
-      sub_certs: 'سبع شهادات احترافية في الذكاء الاصطناعي وهندسة البيانات وتطوير التطبيقات.',
-      c1_t: 'مقدمة في الذكاء الاصطناعي التوليدي', c1_d: 'مفاهيم الذكاء التوليدي وأطر العمل وتقنيات الذكاء السحابية.',
+      lbl_certs: 'الشهادات', h_certs: 'الشهادات الاحترافية',
+      sub_certs: 'ثماني شهادات احترافية في الذكاء الاصطناعي الوكيل وهندسة البيانات وتطوير التطبيقات. اضغطي على أي بطاقة للتفاصيل.',
+      cert_latest: 'الأحدث',
+      c8_t: 'Building Agentic AI Systems — بناء أنظمة الذكاء الاصطناعي الوكيلة', c8_m: 'سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي',
+      c8_meta: 'سدايا · الذكاء الاصطناعي الوكيل',
+      c8_d: 'تصميم وكلاء ذكاء اصطناعي يخططون ويستخدمون الأدوات وينفذون — التنسيق والذاكرة والتقييم عبر مسارات عمل متعددة الخطوات.',
+      c8_long: 'برنامج من سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي — حول بناء أنظمة ذكاء اصطناعي لا تكتفي بالإجابة، بل تقرر الخطوة التالية، وتختار الأداة المناسبة، وتبقى مسؤولة عن النتيجة.' +
+        '<ul><li>بنية الوكلاء: التخطيط واستخدام الأدوات والذاكرة</li>' +
+        '<li>تنسيق مسارات عمل متعددة الخطوات ومتعددة الوكلاء</li>' +
+        '<li>ربط النماذج اللغوية بالأدوات والواجهات والبيانات الخارجية</li>' +
+        '<li>التقييم والضوابط وموثوقية سلوك الوكيل</li></ul>',
+      c1_t: 'Introducing Generative AI with AWS — مقدمة في الذكاء الاصطناعي التوليدي',
+      c1_d: 'مفاهيم الذكاء التوليدي وأطر التعلم العميق التي تقوم عليها — PyTorch و Keras — إلى جانب خدمات AWS السحابية.',
+      c1_meta: 'Amazon Web Services · الذكاء التوليدي',
+      c1_long: 'برنامج من AWS يتجاوز المصطلحات إلى الأطر التي تُبنى بها النماذج التوليدية فعلياً.' +
+        '<ul><li>مفاهيم الذكاء التوليدي وعائلات النماذج</li>' +
+        '<li>التعلم العميق باستخدام PyTorch و Keras</li>' +
+        '<li>خدمات AWS السحابية للتدريب والنشر</li>' +
+        '<li>حالات الاستخدام العملية، وحدود كل منها</li></ul>',
+      c2_meta: 'IBM',
+      c2_long: 'مسار أساسيات من IBM يغطي دورة حياة تعلم الآلة كاملة.' +
+        '<ul><li>أساسيات الذكاء الاصطناعي وتدريب النماذج</li><li>مسارات تعلم الآلة من البداية للنهاية</li><li>تقنيات الذكاء التوليدي وتطبيقاته</li></ul>',
+      c3_meta: 'MongoDB',
+      c3_long: 'الجسر من التفكير العلائقي إلى قواعد بيانات المستندات.' +
+        '<ul><li>نمذجة المستندات مقابل المخططات العلائقية</li><li>استعلامات MongoDB والفهارس والعمليات</li><li>أساسيات إدارة قواعد البيانات</li></ul>',
+      c4_meta: 'أكاديمية بيان · Power BI',
+      c4_long: 'عمل ذكاء أعمال يبدأ من جدول خام وينتهي بلوحة يمكن اتخاذ قرار منها.' +
+        '<ul><li>نمذجة وتحويل البيانات داخل Power BI</li><li>تصميم لوحات المعلومات واختيار التصوير المناسب</li><li>تقارير تجيب على سؤال تجاري واضح</li></ul>',
+      c5_meta: 'أكاديمية Apple للمطورين وطويق',
+      c5_long: 'برنامج مطورة التطبيقات — إطلاق تطبيق فعلي، لا كتابة كود فقط.' +
+        '<ul><li>تطوير التطبيقات من الفكرة حتى البناء</li><li>حل المشكلات ضمن قيود مشاريع حقيقية</li><li>تنفيذ المشاريع وتسليمها</li></ul>',
+      c6_t: 'IELTS', c6_meta: 'إتقان اللغة الإنجليزية',
+      c6_long: 'شهادة معتمدة في إتقان اللغة الإنجليزية — المؤهل الذي يدعم الدراسة والعمل بالإنجليزية.',
+      c7_meta: 'سدايا · هندسة البيانات',
+      c7_long: 'برنامج من سدايا يتناول طبقة البنية التي تقوم عليها أنظمة الذكاء الحديثة.' +
+        '<ul><li>تصميم وتشغيل مسارات البيانات</li><li>عمليات ETL وجودة البيانات</li><li>نمذجة البيانات للتحليل وأحمال الذكاء الاصطناعي</li></ul>',
       c2_t: 'أساسيات الذكاء الاصطناعي', c2_d: 'أساسيات الذكاء الاصطناعي وتدريب النماذج وتعلم الآلة وتقنيات الذكاء التوليدي.',
       c3_t: 'MongoDB لمحترفي SQL', c3_d: 'قواعد بيانات NoSQL وعمليات MongoDB وإدارة قواعد البيانات.',
       c4_t: 'تحليل البيانات بـ Power BI', c4_m: 'أكاديمية بيان', c4_d: 'ذكاء الأعمال ولوحات المعلومات وتصوير البيانات.',
       c5_t: 'مطورة تطبيقات', c5_m: 'أكاديمية Apple للمطورين وطويق', c5_d: 'تطوير التطبيقات وحل المشكلات وتنفيذ المشاريع.',
       c6_m: 'إتقان اللغة الإنجليزية', c6_d: 'شهادة معتمدة في إتقان اللغة الإنجليزية.',
-      c7_t: 'هندسة البيانات لأنظمة الذكاء الاصطناعي الحديثة', c7_m: 'سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي',
+      c7_t: 'هندسة البيانات الحديثة لأنظمة الذكاء الاصطناعي', c7_m: 'سدايا — الهيئة السعودية للبيانات والذكاء الاصطناعي',
       c7_d: 'مسارات البيانات وعمليات ETL ونمذجة البيانات لبناء البنية التي تقوم عليها أنظمة الذكاء الاصطناعي الحديثة.',
 
-      lbl_contact: '// تواصل', h_contact: 'للتواصل والفرص المهنية',
+      lbl_contact: 'تواصل', h_contact: 'للتواصل والفرص المهنية',
       contact_d: 'للتواصل للفرص المهنية في الذكاء الاصطناعي وعلم البيانات وهندسة البيانات وتطوير البرمجيات. الرياض، المملكة العربية السعودية.',
-      btn_email: '✉ راسلني', btn_call: '📞 اتصال',
+      btn_li: '<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/></svg> لينكدإن', btn_email: '✉ راسلني', btn_call: '📞 اتصال', btn_copy: '⧉ نسخ البريد', toast_copied: 'تم نسخ البريد ✓',
       foot_c: '© 2026 هيفاء السلمي', foot_loc: 'الرياض، المملكة العربية السعودية'
     }
   };
@@ -1603,11 +2302,21 @@
         ? 'هيفاء السلمي — الذكاء الاصطناعي وعلم البيانات'
         : 'Haifa Alsulami — AI & Data Science';
       if (renderStats) renderStats();
+      document.dispatchEvent(new CustomEvent('i18n:change'));
     }
 
     toggle.addEventListener('click', function () {
-      apply(window.I18N_LANG === 'en' ? 'ar' : 'en');
+      var next = window.I18N_LANG === 'en' ? 'ar' : 'en';
+      apply(next);
+      store.set('haifa-lang', next);
     });
+
+    /* remember the visitor's choice; otherwise follow the browser */
+    var savedLang = store.get('haifa-lang');
+    var startLang = (savedLang === 'ar' || savedLang === 'en')
+      ? savedLang
+      : (String(navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en');
+    if (startLang === 'ar') apply('ar');
   })();
 
 })();
