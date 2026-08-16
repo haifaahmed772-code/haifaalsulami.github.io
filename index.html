@@ -775,6 +775,24 @@
     html[dir="rtl"] .do.on h3{transform:none}
   }
 
+  /* the network project's artwork */
+  .net .wire{fill:none;stroke:var(--rose);stroke-width:1.8;opacity:.45;stroke-dasharray:5 6;
+    animation:netFlow 3s linear infinite}
+  @keyframes netFlow{to{stroke-dashoffset:-44}}
+  .net .pk circle{fill:var(--rose-deep)}
+  .net .cl{fill:var(--card);stroke:var(--rose);stroke-width:1.8}
+  .net .srv{fill:var(--rose-deep)}
+  .net .led{fill:var(--on-accent);animation:ledBlink 1.6s ease-in-out infinite}
+  @keyframes ledBlink{0%,100%{opacity:1}50%{opacity:.25}}
+  .net .port{stroke:var(--on-accent);stroke-width:1.8;stroke-linecap:round;fill:none;opacity:.75}
+  .net .dt{stroke:var(--rose-deep);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none;opacity:.7}
+  .featured.winner{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose),var(--shadow-sm)}
+  .featured.winner::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:2;
+    background:linear-gradient(120deg,transparent,var(--glow),transparent);transform:skewX(-18deg);
+    animation:winSheen 4.5s ease-in-out infinite;pointer-events:none}
+  .featured.winner .award{margin-bottom:16px;align-self:flex-start}
+  html[data-theme="dark"] .featured.winner{box-shadow:0 0 0 1px var(--rose),0 0 30px -12px rgba(242,167,180,.4)}
+
   /* ==========================================================
      Responsive
      ========================================================== */
@@ -870,8 +888,7 @@
     <div class="hero-grid">
 
       <div>
-        <span class="eyebrow hero-in d1" data-i18n="eyebrow">AI &amp; Data Science · King Saud University</span>
-        <h1 class="hero-in d2" data-i18n="h1">Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.</h1>
+        <h1 class="hero-in d1" data-i18n="h1">Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.</h1>
         <p class="lede hero-in d3" data-i18n="lede">Information Technology student specializing in AI &amp; Data Science, experienced in Python, SQL, ETL pipelines, and Power BI — applying machine learning and data engineering to turn raw data into decisions.</p>
         <div class="cta-row hero-in d4">
           <a class="btn btn-primary" href="#projects" data-i18n="cta_projects">View projects</a>
@@ -1109,6 +1126,39 @@
       </div>
     </article>
 
+    <article class="featured winner reveal-tilt" data-cat="dev" data-key="p5" tabindex="0" role="button" aria-label="Open project details">
+      <div class="featured-body">
+        <button type="button" class="award" id="netAward" aria-label="Award"><svg viewBox="0 0 24 24"><path d="M6 3h12v3a6 6 0 0 1-12 0V3zM4 4h2v2a3 3 0 0 1-2-2zm16 0a3 3 0 0 1-2 2V4h2zM9 13h6l-.5 4h-5L9 13zm-2 6h10v2H7v-2z"/></svg><span data-i18n="award_net">1st Place · KSU Project Fair</span></button>
+        <h3 data-i18n="p5_t">Network Programming</h3>
+        <p data-i18n="p5_d">A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration. It won first place at the King Saud University Project Fair.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Sockets</span><span class="tag">Networking</span></div>
+        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="featured-visual" aria-hidden="true">
+        <svg class="net" viewBox="0 0 220 160">
+          <!-- packets travelling between the clients and the server -->
+          <path class="wire" d="M46 40h60a14 14 0 0 1 14 14v18"/>
+          <path class="wire" d="M174 40h-60a14 14 0 0 0-14 14v18"/>
+          <path class="wire" d="M46 124h60a14 14 0 0 0 14-14v-14"/>
+          <path class="wire" d="M174 124h-60a14 14 0 0 1-14-14v-14"/>
+          <g class="pk"><circle cx="0" cy="0" r="3.4"/><animateMotion dur="2.6s" repeatCount="indefinite" path="M46 40h60a14 14 0 0 1 14 14v18"/></g>
+          <g class="pk"><circle cx="0" cy="0" r="3.4"/><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="M174 124h-60a14 14 0 0 1-14-14v-14"/></g>
+          <g class="pk"><circle cx="0" cy="0" r="3.4"/><animateMotion dur="3.1s" begin=".6s" repeatCount="indefinite" path="M174 40h-60a14 14 0 0 0-14 14v18"/></g>
+          <rect class="cl" x="16" y="26" width="60" height="28" rx="8"/>
+          <rect class="cl" x="144" y="26" width="60" height="28" rx="8"/>
+          <rect class="cl" x="16" y="110" width="60" height="28" rx="8"/>
+          <rect class="cl" x="144" y="110" width="60" height="28" rx="8"/>
+          <path class="dt" d="M30 40h14M44 36l4 4-4 4"/>
+          <path class="dt" d="M158 40h14M172 36l4 4-4 4"/>
+          <path class="dt" d="M30 124h14M44 120l4 4-4 4"/>
+          <path class="dt" d="M158 124h14M172 120l4 4-4 4"/>
+          <rect class="srv" x="82" y="66" width="56" height="28" rx="9"/>
+          <circle class="led" cx="94" cy="80" r="3.4"/>
+          <path class="port" d="M106 74h22M106 80h22M106 86h14"/>
+        </svg>
+      </div>
+    </article>
+
     <div class="grid" id="project-grid">
       <article class="card reveal-tilt" data-cat="ai" data-key="p1" tabindex="0" role="button" aria-label="Open project details">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c2.5.5 4 2.5 4 5a5 5 0 0 1-3 4.6V17a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3v-1.4A5 5 0 0 1 4 11c0-2.5 1.5-4.5 4-5a4 4 0 0 1 4-4z"/></svg></div>
@@ -1134,14 +1184,6 @@
         <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </article>
 
-      <article class="card winner reveal-tilt" data-cat="dev" data-key="p5" tabindex="0" role="button" aria-label="Open project details">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="8" height="6" rx="1.5"/><rect x="14" y="15" width="8" height="6" rx="1.5"/><path d="M6 9v4a2 2 0 0 0 2 2h6M18 15v-4a2 2 0 0 0-2-2h-3"/></svg></div>
-        <button type="button" class="award" id="netAward" aria-label="Award"><svg viewBox="0 0 24 24"><path d="M6 3h12v3a6 6 0 0 1-12 0V3zM4 4h2v2a3 3 0 0 1-2-2zm16 0a3 3 0 0 1-2 2V4h2zM9 13h6l-.5 4h-5L9 13zm-2 6h10v2H7v-2z"/></svg><span data-i18n="award_net">1st Place · KSU Project Fair</span></button>
-        <h3 data-i18n="p5_t">Network Programming</h3>
-        <p data-i18n="p5_d">A client-server application with real-time communication and multiplayer interaction using Java Socket Programming, networking protocols, and GUI integration. It won first place at the King Saud University Project Fair.</p>
-        <div class="tags"><span class="tag">Java</span><span class="tag">Sockets</span><span class="tag">Networking</span></div>
-        <span class="more" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </article>
     </div>
 
     </div>
@@ -1813,7 +1855,7 @@
   (function () {
     var award = document.getElementById('netAward');
     if (!award) return;
-    var card = award.closest('.card');
+    var card = award.closest('.card, .featured');
     var colors = ['#B04A58', '#F5AFAF', '#FFD98A', '#C9637A', '#F9DFDF'];
     var cooling = false;
 
@@ -1964,7 +2006,7 @@
       nav_about: 'About', nav_projects: 'Projects', nav_skills: 'Skills', nav_certs: 'Certifications', nav_contact: 'Contact',
       nav_edu: 'Education', skip: 'Skip to content',
       ag1: 'PLAN', ag2: 'ACT', ag3: 'OBSERVE', ag4: 'REFLECT',
-      eyebrow: 'AI &amp; Data Science · King Saud University',
+      eyebrow: 'Agentic AI · Data Engineering · King Saud University',
       h1: 'Haifa Alsulami<br>turns data into <em>intelligent solutions</em>.',
       lede: 'Information Technology student specializing in AI &amp; Data Science, experienced in Python, SQL, ETL pipelines, and Power BI — applying machine learning and data engineering to turn raw data into decisions.',
       cta_projects: 'View projects', cta_contact: 'Get in touch',
@@ -2124,7 +2166,7 @@
       nav_about: 'نبذة', nav_projects: 'المشاريع', nav_skills: 'المهارات', nav_certs: 'الشهادات', nav_contact: 'تواصل',
       nav_edu: 'التعليم', skip: 'تخطي إلى المحتوى',
       ag1: 'تخطيط', ag2: 'تنفيذ', ag3: 'ملاحظة', ag4: 'مراجعة',
-      eyebrow: 'الذكاء الاصطناعي وعلم البيانات · جامعة الملك سعود',
+      eyebrow: 'الذكاء الاصطناعي الوكيل · هندسة البيانات · جامعة الملك سعود',
       h1: 'هيفاء السلمي<br>تحوّل البيانات إلى <em>حلول ذكية</em>.',
       lede: 'طالبة تقنية معلومات متخصصة في الذكاء الاصطناعي وعلم البيانات، بخبرة في Python و SQL وبناء مسارات البيانات و Power BI — أوظّف تعلم الآلة وهندسة البيانات لتحويل البيانات الخام إلى قرارات.',
       cta_projects: 'استعرض المشاريع', cta_contact: 'تواصل معي',
